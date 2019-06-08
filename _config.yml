@@ -22,6 +22,7 @@ production_url : https://viktorsapozhok.github.io/
 markdown: kramdown
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
+theme: jekyll-theme-minimal
 #
 JB :
   version : 0.3.0
