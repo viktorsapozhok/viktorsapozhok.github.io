@@ -9,6 +9,8 @@ highlighter: rouge
 # so be sure to set them if your theme uses them.
 #
 title : viktorsapozhok
+logo: /assets/img/logo.jpeg
+description: Repositories overview
 author :
   name : Alex Piskun
   email : piskun.aleksey@gmail.com
