@@ -8,9 +8,7 @@ highlighter: rouge
 # Themes are encouraged to use these universal variables
 # so be sure to set them if your theme uses them.
 #
-title : viktorsapozhok
-logo: /assets/img/logo.jpeg
-description: Repositories overview
+title : viktorsapozhok.github.io
 author :
   name : Alex Piskun
   email : piskun.aleksey@gmail.com
@@ -24,7 +22,6 @@ production_url : https://viktorsapozhok.github.io/
 markdown: kramdown
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
-theme: jekyll-theme-minimal
 #
 JB :
   version : 0.3.0
