@@ -1,6 +1,6 @@
 title: Alex Piskun
 logo: /assets/img/logo.jpeg
-description: My CV, projects and repositories
-show_downloads: true
+description: CV, projects and repositories
+show_downloads: false
 google_analytics:
 theme: jekyll-theme-minimal
