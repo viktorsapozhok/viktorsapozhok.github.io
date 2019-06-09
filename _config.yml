@@ -7,11 +7,21 @@ description: CV, projects and repositories
 
 show_downloads: false
 
-social-network-links:
-  rss: true
+# Includes an icon in the footer for each username you enter
+footer-links:
+  dribbble:
   email: piskun.aleksey@gmail.com
+  facebook:
+  flickr:
   github: viktorsapozhok
-  linkedin: https://www.linkedin.com/in/aleksey-piskun-96121590/
+  instagram:
+  linkedin: aleksey-piskun-96121590
+  pinterest:
+  rss:
+  twitter:
+  stackoverflow:
+  youtube:
+  googleplus:
 
 google_analytics:
 
