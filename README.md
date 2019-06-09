@@ -1,6 +1,1 @@
-# viktorsapozhok.github.io
-
-Personal website
-
-https://viktorsapozhok.github.io
-
+viktorsapozhok.github.io
