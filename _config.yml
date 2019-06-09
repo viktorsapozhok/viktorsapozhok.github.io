@@ -1,9 +1,31 @@
 title: Alex Piskun
+
 logo: /assets/img/logo.jpeg
+avatar: /assets/img/logo.jpeg
+
 description: CV, projects and repositories
+
 show_downloads: false
+
+social-network-links:
+  rss: true
+  email: piskun.aleksey@gmail.com
+  github: viktorsapozhok
+  linkedin: https://www.linkedin.com/in/aleksey-piskun-96121590/
+
 google_analytics:
+
 theme: jekyll-theme-minimal
+
 plugins:
   - jekyll-seo-tag
 
+exclude:
+  - CHANGELOG.md
+  - CNAME
+  - Dockerfile
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - Vagrantfile
