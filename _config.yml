@@ -1,11 +1,8 @@
 title: Alex Piskun
-
+author: viktorsapozhok
 logo: /assets/img/logo.jpeg
-
 description: CV, projects and repositories
-
 show_downloads: false
-
 google_analytics:
 
 theme: jekyll-theme-minimal
