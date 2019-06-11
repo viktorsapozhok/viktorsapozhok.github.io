@@ -23,7 +23,7 @@ Genetic algorithm for feature selection + CatboostRegressor, private score 2.425
 Telegram bot for interactive search of city artefacts based on runcity.org routes database. 
 Discover your city while completing small tasks.
 
-### [db-commuter](https://github.com/viktorsapozhok/db-commuter)
+### [db-commuter](https://viktorsapozhok.github.io/db-commuter/)
 
 Collection of wrappers for communication with database. Supports SQLite and PostgreSQL databases.
 
