@@ -18,12 +18,11 @@ Supports reading from following topics:
 An approach used for solving Kaggle LANL Earthquake Prediction Challenge. 
 Genetic algorithm for feature selection + CatboostRegressor, private score 2.425 (31 place).
 
-### [sightspotter](https://github.com/viktorsapozhok/sightspotter)
+### [sightspotter](https://viktorsapozhok.github.io/sightspotter/)
 
-Telegram bot for interactive search of city artefacts based on runcity.org routes database. 
+Telegram bot for interactive search of the city artifacts based on runcity.org routes database. 
 Discover your city while completing small tasks.
 
 ### [db-commuter](https://viktorsapozhok.github.io/db-commuter/)
 
 Collection of wrappers for communication with database. Supports SQLite and PostgreSQL databases.
-
