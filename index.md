@@ -31,6 +31,6 @@ Telegram bot for interactive search of the city artifacts based on runcity.org r
 Following the bot instruction you will discover some historical spots hidden from the touristic eye. 
 Discover your city while completing small tasks.
 
-### [db-commuter](https://viktorsapozhok.github.io/db-commuter/)
+### [pgcom](https://viktorsapozhok.github.io/pgcom/)
 
-Collection of wrappers for communication with database. Supports SQLite and PostgreSQL databases.
+Communication manager for PostgreSQL database.
