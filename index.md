@@ -33,4 +33,6 @@ Discover your city while completing small tasks.
 
 ### [pgcom](https://viktorsapozhok.github.io/pgcom/)
 
-Communication manager for PostgreSQL database.
+Communication manager for PostgreSQL database, provides a collection of wrappers over
+`psycopg2` adapter to simplify the usage of basic SQL operators. 
+
