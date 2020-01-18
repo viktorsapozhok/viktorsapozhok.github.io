@@ -31,8 +31,8 @@ Telegram bot for interactive search of the city artifacts based on runcity.org r
 Following the bot instruction you will discover some historical spots hidden from the touristic eye. 
 Discover your city while completing small tasks.
 
-### [pgcom](https://viktorsapozhok.github.io/pgcom/)
+### [pgcom](https://pgcom.readthedocs.io/)
 
 Communication manager for PostgreSQL database, provides a collection of wrappers over
-psycopg2 adapter to simplify the usage of basic SQL operators. 
+Psycopg adapter to simplify the usage of basic SQL operators. 
 
