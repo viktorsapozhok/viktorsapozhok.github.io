@@ -22,8 +22,9 @@ Discover your city while completing small tasks.
 
 ### [pgcom](https://github.com/viktorsapozhok/pgcom)
 
-Communication manager for PostgreSQL database, provides a collection of wrappers over
-Psycopg adapter to simplify the usage of basic SQL operators. 
+Communication manager for PostgreSQL database, provides a collection of convenience 
+wrappers over Psycopg adapter to simplify the usage of basic Psycopg methods 
+in conjunction with Pandas DataFrames. 
 
 ### [docker-postgres-influxdb-grafana](https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana)
 
