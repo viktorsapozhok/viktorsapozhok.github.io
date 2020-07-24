@@ -4,35 +4,28 @@ layout: default
 
 ## Public repositories
 
-### [idapi-client](https://viktorsapozhok.github.io/idapi-client/)
-
-Python client for receiving messages from Nord Pool Intraday Trading Platform, 
-implemented as a listener of the streaming SockJS/WebSocket API using STOMP protocol. 
-It provides tools for subscribing on streaming topics and translating 
-received messages to csv files.
-
-### [statnett-api-client](https://viktorsapozhok.github.io/statnett-api-client/)
-
-Client for reading real-time data from the REST API of the Norwegian Transmission System Operator (Statnett).
-Supports reading from following topics:
-
-* Nordic Power Balance
-* Nordic Power Flow
-* Grid Frequency  
-
-### [earthquake-prediction](https://viktorsapozhok.github.io/earthquake-prediction/)
+### [earthquake-prediction](https://github.com/viktorsapozhok/earthquake-prediction)
 
 An approach used for solving Kaggle LANL Earthquake Prediction Challenge. 
 Genetic algorithm for feature selection + CatboostRegressor, private score 2.425 (31 place).
 
-### [sightspotter](https://viktorsapozhok.github.io/sightspotter/)
+### [cafeen](https://github.com/viktorsapozhok/cafeen)
+
+An approach used for solving Kaggle [Kaggle Categorical Feature Encoding Challenge II](https://www.kaggle.com/c/cat-in-the-dat-ii). 
+Logistic regression + various encodings, private score 0.78795 (110 place).
+
+### [sightspotter](https://github.com/viktorsapozhok/sightspotter)
 
 Telegram bot for interactive search of the city artifacts based on runcity.org routes database. 
 Following the bot instruction you will discover some historical spots hidden from the touristic eye. 
 Discover your city while completing small tasks.
 
-### [pgcom](https://pgcom.readthedocs.io/)
+### [pgcom](https://github.com/viktorsapozhok/pgcom)
 
 Communication manager for PostgreSQL database, provides a collection of wrappers over
 Psycopg adapter to simplify the usage of basic SQL operators. 
 
+### [docker-postgres-influxdb-grafana](https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana)
+
+Multi-container docker app with Postgres, InfluxDB and Grafana. A quick guide of how to
+configure a dashboard environment and build animated maps with GeoLoop Panel plugin.
