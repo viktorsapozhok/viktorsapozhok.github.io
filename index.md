@@ -26,7 +26,12 @@ Communication manager for PostgreSQL database, provides a collection of convenie
 wrappers over Psycopg adapter to simplify the usage of basic Psycopg methods 
 in conjunction with Pandas DataFrames. 
 
+https://pgcom.readthedocs.io
+
 ### [docker-postgres-influxdb-grafana](https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana)
 
 Multi-container docker app with Postgres, InfluxDB and Grafana. A quick guide of how to
-configure a dashboard environment and build animated maps with GeoLoop Panel plugin.
+configure a dashboard environment, create map overlays with Worldmap Panel plugin, 
+and build animated maps using GeoLoop Panel plugin.
+
+https://docker-postgres-influxdb-grafana.readthedocs.io
