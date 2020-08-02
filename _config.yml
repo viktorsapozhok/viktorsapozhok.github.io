@@ -9,7 +9,6 @@ theme: jekyll-theme-minimal
 
 plugins:
   - jekyll-seo-tag
-  - jekyll-sitemap
 
 exclude:
   - CHANGELOG.md
