@@ -9,6 +9,8 @@ layout: default
 An approach used for solving Kaggle LANL Earthquake Prediction Challenge. 
 Genetic algorithm for feature selection + CatboostRegressor, private score 2.425 (31 place).
 
+[https://viktorsapozhok.github.io/earthquake-prediction/](https://viktorsapozhok.github.io/earthquake-prediction/)
+
 ### [cafeen](https://github.com/viktorsapozhok/cafeen)
 
 An approach used for solving Kaggle [Kaggle Categorical Feature Encoding Challenge II](https://www.kaggle.com/c/cat-in-the-dat-ii). 
@@ -19,6 +21,8 @@ Logistic regression + various encodings, private score 0.78795 (110 place).
 Telegram bot for interactive search of the city artifacts based on runcity.org routes database. 
 Following the bot instruction you will discover some historical spots hidden from the touristic eye. 
 Discover your city while completing small tasks.
+
+[https://viktorsapozhok.github.io/sightspotter/](https://viktorsapozhok.github.io/sightspotter/)
 
 ### [pgcom](https://github.com/viktorsapozhok/pgcom)
 
