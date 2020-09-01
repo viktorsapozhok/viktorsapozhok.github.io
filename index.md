@@ -39,3 +39,8 @@ configure a dashboard environment, create map overlays with Worldmap Panel plugi
 and build animated maps using GeoLoop Panel plugin.
 
 [https://docker-postgres-influxdb-grafana.readthedocs.io](https://docker-postgres-influxdb-grafana.readthedocs.io)
+
+### [ubuntu-user-setup](https://github.com/viktorsapozhok/ubuntu-user-setup)
+
+Short guide on how to manually configure a new user workplace with Ubuntu 20.04 LTS and
+install basic development tools.
