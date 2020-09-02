@@ -42,5 +42,4 @@ and build animated maps using GeoLoop Panel plugin.
 
 ### [ubuntu-user-setup](https://github.com/viktorsapozhok/ubuntu-user-setup)
 
-Short guide on how to manually configure a new user workplace with Ubuntu 20.04 LTS and
-install basic development tools.
+Short guide on how to manually configure a new user workplace and install basic development tools on Ubuntu 20.04 LTS.
