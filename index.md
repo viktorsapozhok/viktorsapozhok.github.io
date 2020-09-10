@@ -38,7 +38,7 @@ Multi-container docker app with Postgres, InfluxDB and Grafana. A quick guide of
 configure a dashboard environment, create map overlays with Worldmap Panel plugin, 
 and build animated maps using GeoLoop Panel plugin.
 
-[https://docker-postgres-influxdb-grafana.readthedocs.io](https://docker-postgres-influxdb-grafana.readthedocs.io)
+[https://viktorsapozhok.github.io/docker-postgres-influxdb-grafana/](https://viktorsapozhok.github.io/docker-postgres-influxdb-grafana/)
 
 ### [ubuntu-user-setup](https://github.com/viktorsapozhok/ubuntu-user-setup)
 
