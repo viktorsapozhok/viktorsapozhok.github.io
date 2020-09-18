@@ -40,6 +40,7 @@ and build animated maps using GeoLoop Panel plugin.
 
 [https://viktorsapozhok.github.io/docker-postgres-influxdb-grafana/](https://viktorsapozhok.github.io/docker-postgres-influxdb-grafana/)
 
-### [ubuntu-user-setup](https://github.com/viktorsapozhok/ubuntu-user-setup)
+### [getting-started-tutorials](https://github.com/viktorsapozhok/getting-started-tutorials)
 
-Short guide on how to manually configure a new user workplace and install basic development tools on Ubuntu 20.04 LTS.
+Tutorials on how to configure and getting started with various (Python + R) development tools 
+on Ubuntu 20.04 LTS.
