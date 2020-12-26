@@ -1,10 +1,12 @@
 ---
 layout: post
-title: "Building animated maps with Grafana."
+title: "Multi-container Docker app with Postgres, InfluxDB and Grafana. 
+    Building animated maps with GeoLoop panel plugin."
 categories: 
-  - grafana
-  - postgres
   - docker
+  - postgres
+  - influxdb
+slug: grafana-worldmap-geoloop
 keywords:
   - docker
   - docker-compose
@@ -13,15 +15,16 @@ keywords:
   - influxdb
   - grafana
   - geoloop
+  - geojson
   - animated-map
   - geoloop-panel
   - worldmap-panel
-meta: "Multi-container docker app with Postgres, InfluxDB and Grafana. 
+meta: "Docker app with Postgres, InfluxDB and Grafana. 
     Building animated maps with GeoLoop Panel plugin."
 ---
 
 This tutorial provides a quick guide of how to install a dashboard environment
-from Grafana, Postgres and InfluxDB with docker-compose, create map overlays with Worldmap Panel plugin and
+from Grafana, PostgreSQL and InfluxDB with docker-compose, create map overlays with Worldmap Panel plugin and
 build animated maps using GeoLoop Panel plugin.
 
 To illustrate the process of building the animated maps with GeoLoop,
@@ -78,14 +81,19 @@ postgres terminal, inside the docker container. See [Makefile](https://github.co
 for more details.
 
 ```
-$ make -C docker/ postgres-create-db
-$ make -C docker/ postgres-init-schema
+$ make postgres-create-db
+$ make postgres-init-schema
 ```
 
 Now we can login to the Grafana web UI in browser (http://localhost:3000/grafana/) with the login `admin` and
 password `password` and initialize data sources.
 
-![Grafana login page](https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/blob/master/docs/source/images/grafana_login.png?raw=true)
+<a href="https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/blob/master/docs/source/images/grafana_login.png?raw=true">
+    <img 
+        src="https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/blob/master/docs/source/images/grafana_login.png?raw=true" 
+        alt="Grafana login page"
+    >
+</a>
 
 ## Data Sources
 
@@ -95,7 +103,12 @@ to find out how to do this.
 
 Here is the configuration parameters we use to add InfluxDB data source.
 
-![Configuration parameters used to add InfluxDB data source](https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/blob/master/docs/source/images/influx.png?raw=true)
+<a href="https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/blob/master/docs/source/images/influx.png?raw=true">
+    <img 
+        src="https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/blob/master/docs/source/images/influx.png?raw=true" 
+        alt="InfluxDB datasource configuration"
+    >
+</a>
 
 And this is the configuration parameters we use to add PostgreSQL data source.
 
@@ -123,13 +136,13 @@ See [Makefile](https://github.com/viktorsapozhok/docker-postgres-influxdb-grafan
 for more details.
 
 ```    
-$ make -C docker/ postgres-copy-data
+$ make postgres-copy-data
 ```
 
-After we have written data to the tables, we can login to terminal and view schema contents.
+After we have written data to the tables, we can login to the terminal and view schema contents.
 
 ```
-$ make -C docker/ postgres-console
+$ make postgres-console
 
 psql (12.3 (Debian 12.3-1.pgdg100+1))
 Type "help" for help.
@@ -148,7 +161,7 @@ Now we calculate logarithm of the number of active cases and write it to InfluxD
 We can also login to influx database from console and view the database contents.
 
 ```
-$ make -C docker/ influx-console
+$ make influx-console
 
 Connected to http://localhost:8086 version 1.8.1
 InfluxDB shell version: 1.8.1
@@ -202,7 +215,7 @@ we will confine ourselves to serving the local directory where geojson is stored
 (however, this approach is not recommended for production).
 
 ```
-$ make -C docker/ data-server
+$ make data-server
 ```
 
 The GeoJSON URL: `http://0.0.0.0:8000/countries.geojson`
@@ -217,3 +230,15 @@ Here is the panel configuration settings.
 And that's how the panel looks like.
 
 ![GeoLoop Panel](https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/blob/master/docs/source/images/preview.gif?raw=true)
+
+## Repository
+
+All data and source codes can be found in the repository: 
+
+[https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana](https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana)
+
+## Reference
+
+* [COVID-19 dataset](https://github.com/datasets/covid-19)
+* [Add a data source in Grafana](https://grafana.com/docs/grafana/latest/datasources/add-a-data-source/)
+* [Getting started with PostgreSQL](https://viktorsapozhok.github.io/postgres/psql/2020/10/15/tutorial.html)

@@ -1,7 +1,10 @@
 ---
 layout: post
-title: "Getting started with postgres."
-categories: postgres
+title: "Getting started with PostgreSQL. Connecting to database using psql."
+categories: 
+  - postgres
+  - psql
+slug: tutorial
 keywords:
   - PostgreSQL
   - postgres
