@@ -18,7 +18,7 @@ meta: "An example of running Python app as a cron job in a Docker container
   using Ofelia scheduler."
 ---
 
-Let's assume we have a python app printing current time to stdout, and we want 
+Let's assume we have a Python app printing current time to stdout, and we want 
 to run it by schedule within docker container. How to do it?
 
 First, let's build it as a Python package with entry point ``task`` defined in a setup file:
@@ -71,7 +71,7 @@ CMD tail -f /dev/null
 ```
 
 Note, that we don't want to install cron in docker container. The reason is that
-using cron we need to run ``task`` under root feeling some inconvenience when using
+using cron we need to run ``task`` under root what can cause some inconvenience when using
 environment variables. Instead, we are using Ofelia docker scheduler which does
 all the dirty work for us.
 
@@ -104,7 +104,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:r
 ```
 
-Now, running a service we get the following:
+Now, running a service we get our task to be executed by the defined schedule, every 10 seconds:
 
 ```shell
 $ docker-compose up
@@ -121,7 +121,7 @@ ofelia_1  | common.go:123 ▶ NOTICE [Job "app" (90fefad32d2c)] Started - task
 ofelia_1  | common.go:123 ▶ NOTICE [Job "app" (90fefad32d2c)] Output: current time: 15:41:08
 ```
 
-Nice thing about Ofelia is that she can be easily integrated for example with slack.
+Nice thing about Ofelia is that she can be easily integrated with Slack.
 To do this we simply add one new line to docker-compose file:
 
 ```yaml
@@ -129,15 +129,14 @@ services:
   app:
     ...
     labels:
-      ofelia.enabled: "true"
-      ofelia.job-exec.app.schedule: "@every 10s"
-      ofelia.job-exec.app.command: "task"
+      ...
       ofelia.job-exec.app.slack-webhook: "slack-webhook-url"
 ```
 
-You can find [here](https://api.slack.com/messaging/webhooks) how to create an incoming webhook in slack.
+To get a webhook URL you need to configure the incoming webhook in your Slack channel.
+You can find [here](https://api.slack.com/messaging/webhooks) how to do this.
 
-Now running the service, you will be receiving the following messages in slack channel:
+Now running the service, you will be receiving the following messages in Slack channel:
 
 <a href="https://github.com/viktorsapozhok/docker-python-ofelia/blob/main/docs/source/images/slack.png?raw=true">
     <img 
@@ -146,7 +145,7 @@ Now running the service, you will be receiving the following messages in slack c
     >
 </a>
 
-That's pretty much about it.
+As a result, we have a job running by schedule inside the container with the execution log redirected to the Slack channel.
 
 ## Repository
 
