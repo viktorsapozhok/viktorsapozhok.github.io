@@ -1,23 +1,28 @@
 ---
 layout: post
-title: "Getting started with PostgreSQL. Connecting to database using psql."
+title: "Getting started with PostgreSQL. 
+  How to create database and connect to it using psql shell."
 categories: 
   - postgres
   - psql
-slug: tutorial
+slug: postgresql-tutorial
 keywords:
-  - PostgreSQL
+  - postgresql
   - postgres
   - psql
-meta: "Tutorial on how to get started with PostgreSQL"
+meta: "How to create Postgres database and connect to it using psql shell."
 ---
 
 PostgreSQL, also known as Postgres, is a free and open-source relational database
-management system. This guide is to give a basic understanding of “How to work with Postgres”.
+management system. psql is a terminal-based front-end to PostgreSQL. It enables 
+to type in queries interactively, issue them to PostgreSQL, and see the query results. 
+
+This guide is to give a basic understanding of how to work with Postgres. It explains
+how to create a new database (local and Azure) and connect to it using psql shell. 
 
 ## Install
 
-Follow the [official guide](https://www.postgresql.org/download/linux/ubuntu/)
+Follow this [official guide](https://www.postgresql.org/download/linux/ubuntu/)
 to install Postgres on Ubuntu.
 
 First, create the file repository configuration:
@@ -235,3 +240,8 @@ To give access to a user, use following:
 postgres=# GRANT USAGE ON SCHEMA schema_name TO username;
 postgres=# GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA schema_name TO username;
 ```
+
+## Reference
+
+* [Install PostgreSQL on Ubuntu](https://www.postgresql.org/download/linux/ubuntu/)
+* [Create an Azure Database for PostgreSQL server by using the Azure portal](https://docs.microsoft.com/en-us/azure/postgresql/quickstart-create-server-database-portal)

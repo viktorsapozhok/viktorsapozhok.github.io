@@ -1,11 +1,11 @@
-title: main
+title: back to the feed
 author:
   name: viktorsapozhok
 #  email: your-email@domain.com
 description: > # this means to ignore newlines until "show_excerpts:"
   This site contains some personal stuff along with tutorials mainly on how to
   configure and getting started with various DevOps tools.
-permalink: /:slug/
+permalink: /:categories/:slug
 
 show_excerpts: false # set to true to show excerpts on the homepage
 
@@ -58,3 +58,6 @@ theme: minima
 plugins:
  - jekyll-feed
  - jekyll-seo-tag
+
+exclude:
+  - README.md

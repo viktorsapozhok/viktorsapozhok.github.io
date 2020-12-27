@@ -112,7 +112,12 @@ Here is the configuration parameters we use to add InfluxDB data source.
 
 And this is the configuration parameters we use to add PostgreSQL data source.
 
-![Configuration parameters used to add PostgreSQL data source](https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/blob/master/docs/source/images/postgres.png?raw=true)
+<a href="https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/blob/master/docs/source/images/postgres.png?raw=true">
+    <img 
+        src="https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/blob/master/docs/source/images/postgres.png?raw=true" 
+        alt="PostgreSQL data source"
+    >
+</a>
 
 The valid password for both data sources is `password`. You can change the credentials in
 [docker/.env](https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/tree/master/docker/.env)
@@ -190,11 +195,21 @@ It needs two sources of data: a location (latitude and longitude) and data that 
 
 The screenshot below shows query and configuration settings we used.
 
-![Configuring Worldmap Panel](https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/blob/master/docs/source/images/worldmap.png?raw=true)
+<a href="https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/blob/master/docs/source/images/worldmap.png?raw=true">
+    <img 
+        src="https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/blob/master/docs/source/images/worldmap.png?raw=true" 
+        alt="Configuring Worldmap Panel"
+    >
+</a>
 
 And as the result we obtain the following map.
 
-![Worldmap Panel example](https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/blob/master/docs/source/images/us.png?raw=true)
+<a href="https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/blob/master/docs/source/images/us.png?raw=true">
+    <img 
+        src="https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/blob/master/docs/source/images/us.png?raw=true" 
+        alt="Worldmap Panel example"
+    >
+</a>
 
 See Worldmap Panel plugin [documentation](https://grafana.com/grafana/plugins/grafana-worldmap-panel)
 for more details.
@@ -225,7 +240,12 @@ the only thing is you need to create a mapbox account.
 
 Here is the panel configuration settings.
 
-![Configuring GeoLoop Panel](https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/blob/master/docs/source/images/geoloop.png?raw=true)
+<a href="https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/blob/master/docs/source/images/geoloop.png?raw=true">
+    <img 
+        src="https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/blob/master/docs/source/images/geoloop.png?raw=true" 
+        alt="Configuring GeoLoop Panel"
+    >
+</a>
 
 And that's how the panel looks like.
 
@@ -241,4 +261,6 @@ All data and source codes can be found in the repository:
 
 * [COVID-19 dataset](https://github.com/datasets/covid-19)
 * [Add a data source in Grafana](https://grafana.com/docs/grafana/latest/datasources/add-a-data-source/)
-* [Getting started with PostgreSQL](https://viktorsapozhok.github.io/postgres/psql/2020/10/15/tutorial.html)
+* [Getting started with PostgreSQL](https://viktorsapozhok.github.io/postgres/psql/postgresql-tutorial)
+* [Worldmap panel plugin](https://grafana.com/grafana/plugins/grafana-worldmap-panel)
+* [GeoLoop panel plugin](https://github.com/CitiLogics/citilogics-geoloop-panel/blob/master/README.md)

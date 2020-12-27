@@ -2,22 +2,28 @@
 layout: post
 title: "An approach used for solving Kaggle LANL Earthquake Prediction Challenge."
 categories: 
-  - catboost
-  - genetic algorithm
+  - catboostregressor
+  - deap
+  - genetic-algorithm
+slug: earthquake-prediction
 keywords:
   - catboost
   - catboostregressor
   - deap
   - genetic-algorithm
-  - earthuake-prediction
+  - earthquake-prediction
 meta: "An approach used for solving Kaggle LANL Earthquake Prediction Challenge. 
 Genetic algorithm for feature selection + CatboostRegressor"
 ---
 
-This repository presents an approach used for solving [Kaggle LANL Earthquake Prediction Challenge](https://www.kaggle.com/c/LANL-Earthquake-Prediction/overview/description).
+This post presents an approach used for solving 
+[Kaggle LANL Earthquake Prediction Challenge](https://www.kaggle.com/c/LANL-Earthquake-Prediction/overview/description).
+All the data and source codes you can find in [this repository](https://github.com/viktorsapozhok/earthquake-prediction).
 
-For feature engineering we used [this kernel](https://www.kaggle.com/artgor/even-more-features) (slightly modified for adding some spectral features). 
-The initial training set `/data/train.csv` contains 4194 rows (one row for each segment) and 1496 columns (features).
+For feature engineering we have used [this kernel](https://www.kaggle.com/artgor/even-more-features) 
+(slightly modified for adding some spectral features). 
+The initial training set [train.csv](https://github.com/viktorsapozhok/earthquake-prediction/blob/master/data/train.csv) 
+contains 4194 rows (one row for each segment) and 1496 columns (features).
 We applied genetic algorithm with CatboostRegressor for fitness evaluation to implement a feature selection. 
 Based on the GA's results, we selected [15 features](https://github.com/viktorsapozhok/earthquake-prediction/blob/master/src/earthquake/submission.py) and
 trained the model using CatboostRegressor with default parameters.
@@ -178,9 +184,15 @@ The observed results are used for submission.
 
 `Cross-validation MAE`: 2.048, `public score`: 1.509, `private score`: 2.425 (31 place). 
    
+## Repository
+
+For more details check the repository:
+
+[https://github.com/viktorsapozhok/earthquake-prediction](https://github.com/viktorsapozhok/earthquake-prediction)
+
 ## Reference
 
 * [LANL Earthquake Prediction, Kaggle competition](https://www.kaggle.com/c/LANL-Earthquake-Prediction)
 * [Feature Engineering](https://www.kaggle.com/artgor/even-more-features)
 * [LANL Earthquake EDA and Prediction](https://www.kaggle.com/gpreda/lanl-earthquake-eda-and-prediction)
-* ["Beware Default Random Forest Importances"](https://explained.ai/rf-importance/index.html)
+* [Beware Default Random Forest Importances](https://explained.ai/rf-importance/index.html)

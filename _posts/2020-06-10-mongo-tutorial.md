@@ -1,12 +1,14 @@
 ---
 layout: post
-title: "Getting started with mongo shell."
-categories: mongo
+title: "Getting started with MongoDB. How to implement connect, mongoimport and 
+  CRUD operations using mongo shell."
+categories: mongodb
+slug: mongo-shell-tutorial
 keywords:
   - MongoDB
   - mongoimport
-  - mongo shell
-meta: "Get started with MongoDB shell"
+  - mongo-shell
+meta: "How to implement connect, mongoimport and CRUD operations using mongo shell."
 ---
 
 The mongo shell is an interactive JavaScript interface to MongoDB.
@@ -19,10 +21,10 @@ to the same location as the server binary.
 
 ## Install MongoDB Community Edition
 
-Use this tutorial to install MongoDB Community Edition on Ubuntu using
+Use the following tutorial to install MongoDB Community Edition on Ubuntu using
 the apt package manager.
 
-Import the public key used by the package management system.
+First, import the public key used by the package management system.
 
 ```bash
 $ wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
@@ -79,13 +81,13 @@ by issuing the following command:
 $ sudo systemctl enable mongod
 ```
 
-As needed, you can stop the mongod process by issuing the following command:
+As needed, you can stop the ``mongod`` process by issuing the following command:
 
 ```bash
 $ sudo systemctl stop mongod
 ```
 
-You can restart the mongod process by issuing the following command:
+You can restart the ``mongod`` process by applying the following command:
 
 ```bash
     $ sudo systemctl restart mongod
@@ -97,7 +99,7 @@ To completely remove MongoDB from a system, you must remove the MongoDB
 applications themselves, the configuration files, and any directories
 containing data and logs.
 
-Stop the mongod process by issuing the following command:
+Stop the ``mongod`` process by issuing the following command:
 
 ```bash
 $ sudo service mongod stop
@@ -141,7 +143,7 @@ You can view help information using ``help`` command from the shell.
 
 To list all the databases available to the user, use the helper ``show dbs``.
 To check the database you are currently connected, use ``db`` command.
-By default, the ``test`` database is used.
+By default, the "test" database is used.
 
 ```bash
 > show dbs
@@ -158,7 +160,7 @@ test
 You can switch to non-existing databases. When you first store data in
 the database, such as by creating a collection, MongoDB creates the database.
 For example, the following creates both the database "newdb" and
-the collection "newcol" during the insertOne() operation.
+the collection "newcol" during the ``insertOne()`` operation.
 
 ```bash
 > use newdb
@@ -270,7 +272,7 @@ true
 
 ## Import geojson with mongoimport
 
-The mongoimport tool imports content from an CSV, TSV or JSON data into MongoDB.
+The mongoimport tool imports content from a CSV, TSV or JSON data into MongoDB.
 Let's use it to bulk import countries.geojson to "countries" collection in "newdb"
 database.
 
