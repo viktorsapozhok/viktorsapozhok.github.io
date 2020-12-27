@@ -64,7 +64,7 @@ Three containers have been created and started. For the app services we expose t
 postgres ports in docker-compose file. Inside a docker container, postgres is running on port `5432`,
 whereas the publicly exposed port outside the container is `5433`.
 
-```
+```yaml
 version: '3'
 
 services:
