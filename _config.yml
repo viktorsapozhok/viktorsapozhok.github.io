@@ -1,21 +1,63 @@
-title: Alex Piskun
-author: viktorsapozhok
-logo: /assets/img/logo.jpeg
-description: Repositories overview
-show_downloads: false
-google_analytics:
+title: back to the feed
+author:
+  name: viktorsapozhok
+#  email: your-email@domain.com
+description: > # this means to ignore newlines until "show_excerpts:"
+  This site contains some personal stuff along with tutorials mainly on how to
+  configure and getting started with various DevOps tools.
+permalink: /:categories/:slug
 
-theme: jekyll-theme-minimal
+show_excerpts: false # set to true to show excerpts on the homepage
+
+# Minima date format
+# refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this
+minima:
+  date_format: "%b %-d, %Y"
+
+  # generate social links in footer
+  social_links:
+    #twitter: jekyllrb
+    github:  viktorsapozhok
+    # devto: jekyll
+    # dribbble: jekyll
+    # facebook: jekyll
+    # flickr:   jekyll
+    # instagram: jekyll
+    linkedin: aleksey-piskun-96121590
+    # pinterest: jekyll
+    # youtube: jekyll
+    # youtube_channel: UC8CXR0-3I70i1tfPg1PAE1g
+    # youtube_channel_name: CloudCannon
+    # telegram: jekyll
+    # googleplus: +jekyll
+    # microdotblog: jekyll
+    # keybase: jekyll
+
+    # Mastodon instances
+    # mastodon:
+    # - username: jekyll
+    #   instance: example.com
+    # - username: jekyll2
+    #   instance: example.com
+
+    # GitLab instances
+    # gitlab:
+    # - username: jekyll
+    #   instance: example.com
+    # - username: jekyll2
+    #   instance: example.com
+
+# If you want to link only specific pages in your header, uncomment
+# this and add the path to the pages in order as they should show up
+#header_pages:
+# - about.md
+
+# Build settings
+theme: minima
 
 plugins:
-  - jekyll-seo-tag
+ - jekyll-feed
+ - jekyll-seo-tag
 
 exclude:
-  - CHANGELOG.md
-  - CNAME
-  - Dockerfile
-  - Gemfile
-  - Gemfile.lock
-  - LICENSE
   - README.md
-  - Vagrantfile

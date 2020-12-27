@@ -3,12 +3,15 @@
     <loc>https://viktorsapozhok.github.io/</loc>
 </url>
 <url>
-    <loc>https://viktorsapozhok.github.io/earthquake-prediction/</loc>
+    <loc>https://viktorsapozhok.github.io/docker/postgres/influxdb/grafana-worldmap-geoloop/</loc>
 </url>
 <url>
-    <loc>https://viktorsapozhok.github.io/docker-postgres-influxdb-grafana/</loc>
+    <loc>https://viktorsapozhok.github.io/mongodb/mongo-shell-tutorial/</loc>
 </url>
 <url>
-    <loc>https://viktorsapozhok.github.io/sightspotter/</loc>
+    <loc>https://viktorsapozhok.github.io/postgres/psql/postgresql-tutorial/</loc>
+</url>
+<url>
+    <loc>https://viktorsapozhok.github.io/catboostregressor/deap/genetic-algorithm/earthquake-prediction/</loc>
 </url>
 </urlset>
