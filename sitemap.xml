@@ -3,18 +3,23 @@
     <loc>https://viktorsapozhok.github.io/</loc>
 </url>
 <url>
-    <loc>https://viktorsapozhok.github.io/docker-compose/cron/crontab/docker-python-ofelia/</loc>
+    <loc>https://viktorsapozhok.github.io/docker-cron-crontab-python-ofelia/</loc>
+    <lastmod>2020-12-28T00:00:00+00:00</lastmod>
 </url>
 <url>
-    <loc>https://viktorsapozhok.github.io/docker/postgres/influxdb/grafana-worldmap-geoloop/</loc>
+    <loc>https://viktorsapozhok.github.io/docker-postgres-influxdb-grafana-worldmap-geoloop/</loc>
+    <lastmod>2020-12-28T00:00:00+00:00</lastmod>
 </url>
 <url>
-    <loc>https://viktorsapozhok.github.io/mongodb/mongo-shell-tutorial/</loc>
+    <loc>https://viktorsapozhok.github.io/mongodb-mongoimport-mongo-shell/</loc>
+    <lastmod>2020-12-28T00:00:00+00:00</lastmod>
 </url>
 <url>
-    <loc>https://viktorsapozhok.github.io/postgres/psql/postgresql-tutorial/</loc>
+    <loc>https://viktorsapozhok.github.io/postgresql-psql/</loc>
+    <lastmod>2020-12-28T00:00:00+00:00</lastmod>
 </url>
 <url>
-    <loc>https://viktorsapozhok.github.io/catboostregressor/deap/genetic-algorithm/earthquake-prediction/</loc>
+    <loc>https://viktorsapozhok.github.io/catboostregressor-deap-genetic-algorithm-earthquake-prediction/</loc>
+    <lastmod>2020-12-28T00:00:00+00:00</lastmod>
 </url>
 </urlset>
