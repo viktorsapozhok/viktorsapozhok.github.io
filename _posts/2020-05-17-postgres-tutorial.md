@@ -2,10 +2,7 @@
 layout: post
 title: "Getting started with PostgreSQL. 
   How to create database and connect to it using psql shell."
-categories: 
-  - postgres
-  - psql
-slug: postgresql-tutorial
+slug: postgresql-psql
 keywords:
   - postgresql
   - postgres

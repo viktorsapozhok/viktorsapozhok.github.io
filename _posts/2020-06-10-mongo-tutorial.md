@@ -2,8 +2,7 @@
 layout: post
 title: "Getting started with MongoDB. How to implement connect, mongoimport and 
   CRUD operations using mongo shell."
-categories: mongodb
-slug: mongo-shell-tutorial
+slug: mongodb-mongoimport-mongo-shell
 keywords:
   - MongoDB
   - mongoimport

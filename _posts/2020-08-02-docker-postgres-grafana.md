@@ -2,11 +2,7 @@
 layout: post
 title: "Multi-container Docker app with Postgres, InfluxDB and Grafana. 
     Building animated maps with GeoLoop panel plugin."
-categories: 
-  - docker
-  - postgres
-  - influxdb
-slug: grafana-worldmap-geoloop
+slug: docker-postgres-influxdb-grafana-worldmap-geoloop
 keywords:
   - docker
   - docker-compose

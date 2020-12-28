@@ -1,11 +1,7 @@
 ---
 layout: post
 title: "An approach used for solving Kaggle LANL Earthquake Prediction Challenge."
-categories: 
-  - catboostregressor
-  - deap
-  - genetic-algorithm
-slug: earthquake-prediction
+slug: catboostregressor-deap-genetic-algorithm-earthquake-prediction
 keywords:
   - catboost
   - catboostregressor
