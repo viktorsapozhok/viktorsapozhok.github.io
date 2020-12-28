@@ -257,6 +257,6 @@ All data and source codes can be found in the repository:
 
 * [COVID-19 dataset](https://github.com/datasets/covid-19)
 * [Add a data source in Grafana](https://grafana.com/docs/grafana/latest/datasources/add-a-data-source/)
-* [Getting started with PostgreSQL](https://viktorsapozhok.github.io/postgres/psql/postgresql-tutorial)
+* [Getting started with PostgreSQL](https://viktorsapozhok.github.io/postgresql-psql/)
 * [Worldmap panel plugin](https://grafana.com/grafana/plugins/grafana-worldmap-panel)
 * [GeoLoop panel plugin](https://github.com/CitiLogics/citilogics-geoloop-panel/blob/master/README.md)
