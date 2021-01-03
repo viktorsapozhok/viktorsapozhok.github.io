@@ -2,14 +2,7 @@
 layout: post
 title: "An example of running Python app as a cron job in a Docker container
   using Ofelia scheduler."
-slug: docker-cron-crontab-python-ofelia
-keywords:
-  - docker
-  - docker-compose
-  - cron
-  - crontab
-  - python
-  - ofelia
+slug: docker-python-ofelia
 meta: "An example of running Python app as a cron job in a Docker container
   using Ofelia scheduler."
 ---
