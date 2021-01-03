@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "An approach used for solving Kaggle LANL Earthquake Prediction Challenge. 
-  Genetic algorithm for feature selection + CatboostRegressor"
+title: "An approach used for solving Kaggle Earthquake Prediction Challenge. 
+  Genetic algorithm (DEAP) for feature selection + CatboostRegressor"
 slug: deap-genetic-algorithm
-meta: "An approach used for solving Kaggle LANL Earthquake Prediction Challenge. 
-Genetic algorithm for feature selection + CatboostRegressor"
+meta: "An approach used for solving Kaggle Earthquake Prediction Challenge. 
+Genetic algorithm (DEAP) for feature selection + CatboostRegressor"
 ---
 
 This post presents an approach used for solving 
