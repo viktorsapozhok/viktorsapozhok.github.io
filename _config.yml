@@ -3,7 +3,7 @@ author:
   name: viktorsapozhok
 #  email: your-email@domain.com
 description: > # this means to ignore newlines until "show_excerpts:"
-  Tutorials on how to configure and getting started with various DevOps tools.
+  tutorials on how to configure and getting started with various devops tools:
   docker, postgres, grafana, mongodb, influx, azure, etc
 permalink: /:slug/
 
