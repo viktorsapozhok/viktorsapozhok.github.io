@@ -3,8 +3,7 @@ layout: post
 title: "An approach used for solving Kaggle Earthquake Prediction Challenge. 
   Genetic algorithm (DEAP) for feature selection + CatboostRegressor"
 slug: deap-genetic-algorithm
-meta: "An approach used for solving Kaggle Earthquake Prediction Challenge. 
-Genetic algorithm (DEAP) for feature selection + CatboostRegressor"
+meta: "How to implement feature selection using genetic algorithm provided by DEAP package"
 ---
 
 This post presents an approach used for solving 
