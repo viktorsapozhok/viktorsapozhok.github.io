@@ -1,10 +1,10 @@
-title: back to the feed
+title: tutorials
 author:
   name: viktorsapozhok
 #  email: your-email@domain.com
 description: > # this means to ignore newlines until "show_excerpts:"
-  This site contains some personal stuff along with tutorials mainly on how to
-  configure and getting started with various DevOps tools.
+  Tutorials on how to configure and getting started with various DevOps tools.
+  docker, postgres, grafana, mongodb, influx, azure, etc
 permalink: /:slug/
 
 show_excerpts: false # set to true to show excerpts on the homepage
