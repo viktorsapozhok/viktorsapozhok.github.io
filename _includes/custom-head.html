@@ -1,1 +1,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+{% if page.description %}
+  <meta name="description" content="{{ page.description }}">
+{% endif %}
+{% if page.keywords %}
+  <meta name="keywords" content="{{ page.keywords | join: ', ' | escape }}">
+{% endif %}

@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "An example of running Python app as a cron job in a Docker container
-  using Ofelia scheduler."
+title: An example of running Python app as a cron job in a Docker container using Ofelia scheduler.
 slug: docker-python-ofelia
-meta: "How to run cron job in docker container as non-root user."
+description: How to run python script in a docker container by cron.
+keywords: docker python cron crontab ofelia scheduler
 ---
 
 Let's assume we have a Python app printing current time to stdout, and we want 
