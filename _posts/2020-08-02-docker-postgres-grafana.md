@@ -1,9 +1,10 @@
 ---
 layout: post
 title: "Multi-container Docker app with Postgres, InfluxDB and Grafana. 
-    Building animated maps with GeoLoop panel plugin."
+    Building animated maps with GeoLoop Panel plugin."
 slug: docker-postgres-grafana
-meta: "How to build docker with postgres, influxdb and grafana."
+description: How to build docker with Postgres, InfluxDB and Grafana, create map overlays with Worldmap Panel, build animated maps using GeoLoop Panel. 
+keywords: postgres postgresql docker influxdb grafana worldmap geoloop geojson
 ---
 
 This tutorial provides a quick guide of how to install a dashboard environment

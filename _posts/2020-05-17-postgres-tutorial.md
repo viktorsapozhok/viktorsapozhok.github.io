@@ -1,13 +1,9 @@
 ---
 layout: post
-title: "Getting started with PostgreSQL. 
-  How to create database and connect to it using psql shell."
+title: Getting started with PostgreSQL. How to create database and connect to it using psql shell.
 slug: postgres-tutorial
-keywords:
-  - postgresql
-  - postgres
-  - psql
-meta: "How to create Postgres database and connect to it using psql shell."
+keywords: postgresql postgres psql
+description: How to create Postgres database and connect to it using psql shell.
 ---
 
 PostgreSQL, also known as Postgres, is a free and open-source relational database

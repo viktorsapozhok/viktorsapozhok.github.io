@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Getting started with MongoDB. How to implement connect, mongoimport and 
-  CRUD operations using mongo shell."
+title: Getting started with MongoDB. How to implement connect, mongoimport and CRUD operations using mongo shell.
 slug: mongo-shell-tutorial
-meta: "How to implement connect, mongoimport and CRUD operations using mongo shell."
+description: How to implement connect, mongoimport and CRUD operations using mongo shell.
+keywords: mongo mongodb mongoimport 
 ---
 
 The mongo shell is an interactive JavaScript interface to MongoDB.
