@@ -1,6 +1,6 @@
 ---
 layout: post
-title: An example of running Python app as a cron job in a Docker container using Ofelia scheduler.
+title: Running Python app by cron as a non-root user in a Docker container using Ofelia scheduler.
 slug: docker-python-ofelia
 description: How to run python script in a docker container by cron as a non-root user using Ofelia scheduler.
 keywords: docker python cron crontab ofelia scheduler non-root
