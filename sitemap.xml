@@ -1,25 +1,26 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
     <loc>https://viktorsapozhok.github.io/</loc>
+    <lastmod>2021-01-13T00:00:00+00:00</lastmod>
 </url>
 <url>
     <loc>https://viktorsapozhok.github.io/docker-python-ofelia/</loc>
-    <lastmod>2021-01-04T00:00:00+00:00</lastmod>
+    <lastmod>2021-01-13T00:00:00+00:00</lastmod>
 </url>
 <url>
     <loc>https://viktorsapozhok.github.io/docker-postgres-grafana/</loc>
-    <lastmod>2021-01-04T00:00:00+00:00</lastmod>
+    <lastmod>2021-01-13T00:00:00+00:00</lastmod>
 </url>
 <url>
     <loc>https://viktorsapozhok.github.io/mongo-shell-tutorial/</loc>
-    <lastmod>2021-01-04T00:00:00+00:00</lastmod>
+    <lastmod>2021-01-13T00:00:00+00:00</lastmod>
 </url>
 <url>
     <loc>https://viktorsapozhok.github.io/postgres-tutorial/</loc>
-    <lastmod>2021-01-04T00:00:00+00:00</lastmod>
+    <lastmod>2021-01-13T00:00:00+00:00</lastmod>
 </url>
 <url>
     <loc>https://viktorsapozhok.github.io/deap-genetic-algorithm/</loc>
-    <lastmod>2021-01-04T00:00:00+00:00</lastmod>
+    <lastmod>2021-01-13T00:00:00+00:00</lastmod>
 </url>
 </urlset>
