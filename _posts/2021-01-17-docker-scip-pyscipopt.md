@@ -45,6 +45,8 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 scip                v0.1                78791bbde634        14 hours ago        519MB
 ```
 
+See [Dockerfile](https://github.com/viktorsapozhok/docker-scip/blob/master/Dockerfile) for more details.
+
 ## Packing knapsack
 
 To demonstrate how to use PySCIPOpt, we show how to solve a small-scale 
