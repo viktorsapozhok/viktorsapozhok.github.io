@@ -129,7 +129,7 @@ model.setObjective(
 model.optimize()
 ```
 
-See script `knapsack.py` for more details.
+See [knapsack.py](https://github.com/viktorsapozhok/docker-scip/blob/master/knapsack.py) for more details.
 
 ## Running SCIP solver inside docker
 
