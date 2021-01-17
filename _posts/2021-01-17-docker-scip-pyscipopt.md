@@ -16,11 +16,23 @@ the optimization problem inside the container.
 
 SCIP is currently one of the fastest non-commercial solvers for mixed integer programming (MIP) and
 mixed integer nonlinear programming (MINLP). It's regularly updated releasing a new version several times a year. 
-In addition, it provides an easy-to-use Python API to the SCIP optimization software (PySCIPOpt). 
+In addition, it provides an easy-to-use Python API (PySCIPOpt) to the SCIP optimization software.
+PySCIPOpt is implemented in Cython, what gets a good speedup when building an optimization problem in comparison
+with raw Python code.
 
 ## How to build docker
 
-First, you need to clone the repository:
+To build a docker container with SCIP Optimization Suite and PySCIPOpt installed, you need to clone this 
+[repository](https://github.com/viktorsapozhok/docker-scip). It contains only the root directory with the following
+files:
+
+    .
+    ├── Dockerfile                    
+    │── docker-compose.yml
+    ├── knapsack.py             # demo example implemented small-scale knapsack problem 
+    └── ...
+
+To clone the repo, use following:
 
 ```shell
 $ git clone https://github.com/viktorsapozhok/docker-scip.git
@@ -31,7 +43,7 @@ it's 7.0.2. SCIP is distributed under the Academic License, and you can download
 
 Note, that you need to download deb installer. Copy it to the root directory (where the Dockerfile is located).
 
-Then to build a docker image, you can issue `docker-compose` from the root directory:
+Then to build a docker image, you can issue `docker-compose build` from the root directory:
 
 ```shell
 $ docker-compose build
