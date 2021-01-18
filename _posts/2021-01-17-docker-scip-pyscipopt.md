@@ -20,7 +20,7 @@ In addition, it provides an easy-to-use Python API (PySCIPOpt) to the SCIP optim
 PySCIPOpt is implemented in Cython, what gets a good speedup when building an optimization problem in comparison
 with raw Python code.
 
-## How to build docker
+## How to build a docker with SCIP
 
 To build a docker container with SCIP Optimization Suite and PySCIPOpt installed, you need to clone this 
 [repository](https://github.com/viktorsapozhok/docker-scip). It contains only the root directory with the following
@@ -49,7 +49,7 @@ Then to build a docker image, you can issue `docker-compose build` from the root
 $ docker-compose build
 ```
 
-When building process is over, you can see the new image.
+When building process is over, you can check that a new image is now in the local image store.
 
 ```shell
 $ docker images
@@ -57,7 +57,79 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 scip                v0.1                78791bbde634        14 hours ago        519MB
 ```
 
-See [Dockerfile](https://github.com/viktorsapozhok/docker-scip/blob/master/Dockerfile) for more details.
+Now let's take a look at the [Dockerfile](https://github.com/viktorsapozhok/docker-scip/blob/master/Dockerfile) to understand 
+in details what happens when you run the building process.
+
+The first instruction specifies the base image on which we add new layers. Here we use the slim variant of
+the official Docker Python image.
+
+```dockerfile
+FROM python:3.9-slim
+```
+
+As a next step, we install the basic GCC/g++ compilers and libraries included into `build-essential`
+package. It's needed to compile debian packages. Along with it, we install all the SCIP Optimization Suite dependencies.
+
+```dockerfile
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        build-essential \
+        libgfortran4 \
+        libcliquer1 \
+        libopenblas-dev \
+        libgsl23 \
+        libtbb2 \
+        wget \
+    && wget -O libboost.deb "http://archive.ubuntu.com/ubuntu/pool/main/b/boost1.65.1/libboost-program-options1.65.1_1.65.1+dfsg-0ubuntu5_amd64.deb" \
+    && dpkg -i libboost.deb \
+    && rm libboost.deb
+```
+
+Now everything is ready to install the SCIP Optimization Suite. We copy the debian package 
+to docker, install it and remove the installer.
+
+```dockerfile
+ADD SCIPOptSuite-7.0.2-Linux-ubuntu.deb /
+
+RUN dpkg -i SCIPOptSuite-7.0.2-Linux-ubuntu.deb \
+    && rm SCIPOptSuite-7.0.2-Linux-ubuntu.deb
+```
+
+As a last step, we create a new user, copy the demo script `knapsack.py` to
+user's home directory, and install PySCIPOpt. 
+
+```dockerfile
+RUN groupadd --gid 1000 user \
+    && useradd --uid 1000 --gid 1000 --create-home --shell /bin/bash user \
+    && chown -R "1000:1000" /home/user
+
+RUN mkdir /home/user/scripts
+ADD knapsack.py /home/user/scripts
+USER user
+RUN pip install pyscipopt
+```
+
+To verify, that SCIP was installed correctly, we can issue `scip --version` in the running container.
+
+```shell
+$ docker-compose up -d
+$ docker exec -it scip scip --version
+
+SCIP version 7.0.2 [precision: 8 byte] [memory: block] [mode: optimized] [LP solver: SoPlex 5.0.2] [GitHash: e9d280a398]
+Copyright (C) 2002-2020 Konrad-Zuse-Zentrum fuer Informationstechnik Berlin (ZIB)
+
+External codes: 
+  SoPlex 5.0.2         Linear Programming Solver developed at Zuse Institute Berlin (soplex.zib.de) [GitHash: e24c304e]
+  CppAD 20180000.0     Algorithmic Differentiation of C++ algorithms developed by B. Bell (www.coin-or.org/CppAD)
+  ZLIB 1.2.11          General purpose compression library by J. Gailly and M. Adler (zlib.net)
+  GMP 6.1.2            GNU Multiple Precision Arithmetic Library developed by T. Granlund (gmplib.org)
+  ZIMPL 3.4.0          Zuse Institute Mathematical Programming Language developed by T. Koch (zimpl.zib.de)
+  PaPILO 1.0.2         parallel presolve for integer and linear optimization (https://github.com/lgottwald/PaPILO) [GitHash: 62d2842]
+  bliss 0.73p          Computing Graph Automorphism Groups by T. Junttila and P. Kaski (http://www.tcs.hut.fi/Software/bliss/)
+  Ipopt 3.13.2         Interior Point Optimizer developed by A. Waechter et.al. (www.coin-or.org/Ipopt)
+
+Compiler: gcc 7.5.0
+```
 
 ## Packing knapsack
 
