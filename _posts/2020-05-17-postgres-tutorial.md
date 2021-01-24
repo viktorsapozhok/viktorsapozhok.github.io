@@ -15,8 +15,7 @@ how to create a new database (local and Azure) and connect to it using psql shel
 
 ## Install
 
-Follow this [official guide](https://www.postgresql.org/download/linux/ubuntu/)
-to install Postgres on Ubuntu.
+Follow this [official guide][1] to install Postgres on Ubuntu.
 
 First, create the file repository configuration:
 
@@ -177,9 +176,8 @@ postgres=# GRANT CONNECT ON DATABASE dbname TO username;
 
 ## Create an Azure Database
 
-Follow [this guide](https://docs.microsoft.com/en-us/azure/postgresql/quickstart-create-server-database-portal)
-to create an Azure Database for PostgreSQL server by using the Azure portal. When its created and the firewall rule
-configured, you can connect to the server via psql client.
+Follow [this guide][2] to create an Azure Database for PostgreSQL server by using the Azure portal. 
+When its created and the firewall rule configured, you can connect to the server via psql client.
 
 > Use the empty database ``postgres`` with admin user.
 
@@ -234,7 +232,5 @@ postgres=# GRANT USAGE ON SCHEMA schema_name TO username;
 postgres=# GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA schema_name TO username;
 ```
 
-## Reference
-
-* [Install PostgreSQL on Ubuntu](https://www.postgresql.org/download/linux/ubuntu/)
-* [Create an Azure Database for PostgreSQL server by using the Azure portal](https://docs.microsoft.com/en-us/azure/postgresql/quickstart-create-server-database-portal)
+[1]: https://www.postgresql.org/download/linux/ubuntu/ "Install PostgreSQL on Ubuntu"
+[2]: https://docs.microsoft.com/en-us/azure/postgresql/quickstart-create-server-database-portal "Create an Azure Database for PostgreSQL server by using the Azure portal"

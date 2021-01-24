@@ -16,16 +16,14 @@ we will use time series data tracking the number of people affected by COVID-19 
 including confirmed cases of Coronavirus infection, the number of people died while
 sick with Coronavirus, and the number of people recovered from it.
 
-The data is borrowed from "covid-19" [dataset](https://github.com/datasets/covid-19)
-and stored as csv files in "data" directory.
+The data is borrowed from "covid-19" [dataset][1] and stored as csv files in "data" directory.
 
 <img src="https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/blob/master/docs/source/images/dashboard.gif?raw=true">
 
 ## Quick Start
 
-To start the application, install [docker-compose](https://docs.docker.com/compose/install)
-on the host, clone this repo and run docker-compose from the
-[docker](https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/tree/master/docker)
+To start the application, install [docker-compose][2] on the host, clone this repo 
+and run docker-compose from the [docker](https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/tree/master/docker)
 directory.
 
 ```
@@ -60,8 +58,8 @@ services:
 Before we login to Grafana UI, we need to create PostgreSQL database. Note that we have already
 created InfluxDB database specifying `INFLUXDB_DB` environment variable in docker-compose file.
 
-To create postgres database we use [psql](http://postgresguide.com/utilities/psql.html), 
-postgres terminal, inside the docker container. See [Makefile](https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/tree/master/docker/Makefile)
+To create postgres database we use [psql][3], postgres terminal, inside the docker container. 
+See [Makefile](https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/tree/master/docker/Makefile)
 for more details.
 
 ```
@@ -82,8 +80,7 @@ password `password` and initialize data sources.
 ## Data Sources
 
 Before we create a dashboard, we need to add InfluxDB and PostgreSQL data sources. Follow
-[this guide](https://grafana.com/docs/grafana/latest/features/datasources/add-a-data-source/)
-to find out how to do this.
+[this guide][4] to find out how to do this.
 
 Here is the configuration parameters we use to add InfluxDB data source.
 
@@ -113,8 +110,8 @@ To illustrate the process of building the animated map with GeoLoop Panel plugin
 tracking the number of people affected by COVID-19 worldwide, including confirmed cases of Coronavirus infection,
 the number of people died while sick with Coronavirus, the number of people recovered from it.
 
-We borrowed data from "covid-19" [dataset](https://github.com/datasets/covid-19)
-and store it as csv files in [data](https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/tree/master/data) directory:
+We borrowed data from "covid-19" [dataset][1] and store it as csv files in 
+[data](https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/tree/master/data) directory:
 
 * [countries-aggregated.csv](https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/tree/master/data/countries-aggregated.csv) - cumulative cases (confirmed, recovered, deaths) across the globe.
 * [us_confirmed.csv](https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana/tree/master/data/us_confirmed.csv) - cumulative confirmed cases for US regions.
@@ -241,10 +238,7 @@ All data and source codes can be found in the repository:
 
 [https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana](https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana)
 
-## Reference
-
-* [COVID-19 dataset](https://github.com/datasets/covid-19)
-* [Add a data source in Grafana](https://grafana.com/docs/grafana/latest/datasources/add-a-data-source/)
-* [Getting started with PostgreSQL](https://viktorsapozhok.github.io/postgres-tutorial/)
-* [Worldmap panel plugin](https://grafana.com/grafana/plugins/grafana-worldmap-panel)
-* [GeoLoop panel plugin](https://github.com/CitiLogics/citilogics-geoloop-panel/blob/master/README.md)
+[1]: https://github.com/datasets/covid-19 "COVID-19 dataset"
+[2]: https://docs.docker.com/compose/install
+[3]: http://postgresguide.com/utilities/psql.html
+[4]: https://grafana.com/docs/grafana/latest/datasources/add-a-data-source/ "Add a data source in Grafana"
