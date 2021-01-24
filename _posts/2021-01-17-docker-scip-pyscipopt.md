@@ -23,7 +23,7 @@ with raw Python code.
 ## How to build a docker with SCIP
 
 To build a docker container with SCIP Optimization Suite and PySCIPOpt installed, you need to clone this 
-[repository](https://github.com/viktorsapozhok/docker-scip). It contains only the root directory with the following
+[repository][1]. It contains only the root directory with the following
 files:
 
     .
@@ -283,7 +283,4 @@ For more details see the repository:
 
 [https://github.com/viktorsapozhok/docker-scip](https://github.com/viktorsapozhok/docker-scip)
 
-## Reference
-
-* [PySCIPOpt: Mathematical Programming in Python with the SCIP Optimization Suite](https://github.com/scipopt/PySCIPOpt)
-* [SCIP Optimization Suite](https://www.scipopt.org/)
+[1]: https://github.com/viktorsapozhok/docker-scip "How to install pyscipopt in docker"

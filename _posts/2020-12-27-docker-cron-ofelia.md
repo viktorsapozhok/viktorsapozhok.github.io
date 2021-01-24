@@ -60,7 +60,7 @@ CMD tail -f /dev/null
 
 Note, that we don't want to install cron in docker container. The reason is that
 using cron we need to run ``task`` under root what can cause some inconvenience when using
-environment variables. Instead, we are using Ofelia docker scheduler which does
+environment variables. Instead, we are using [Ofelia docker scheduler][1] which does
 all the dirty work for us.
 
 Here is the docker-compose configuration:
@@ -122,7 +122,7 @@ services:
 ```
 
 To get a webhook URL you need to configure the incoming webhook in your Slack channel.
-You can find [here](https://api.slack.com/messaging/webhooks) how to do this.
+You can find [here][2] how to do this.
 
 Now running the service, you will be receiving the following messages in Slack channel:
 
@@ -137,11 +137,8 @@ As a result, we have a job running by schedule inside the container with the exe
 
 ## Repository
 
-You can find docker setup in this repository:
+You can find docker setup in the [repository][3]
 
-[https://github.com/viktorsapozhok/docker-python-ofelia](https://github.com/viktorsapozhok/docker-python-ofelia)
-
-## Reference
-
-* [Ofelia - a docker job scheduler](https://github.com/mcuadros/ofelia)
-* [Sending messages using Incoming Webhooks](https://api.slack.com/messaging/webhooks)
+[1]: https://github.com/mcuadros/ofelia "Ofelia - a docker job scheduler"
+[2]: https://api.slack.com/messaging/webhooks "Sending messages using Incoming Webhooks"
+[3]: https://github.com/viktorsapozhok/docker-python-ofelia "Running Python app by cron as a non-root user in a Docker container using Ofelia scheduler"
