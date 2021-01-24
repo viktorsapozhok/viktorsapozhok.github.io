@@ -279,8 +279,6 @@ To stop the running container, use `down` command:
 docker-compose down
 ```
 
-For more details see the repository:
-
-[https://github.com/viktorsapozhok/docker-scip](https://github.com/viktorsapozhok/docker-scip)
+For more details see the [repository][1].
 
 [1]: https://github.com/viktorsapozhok/docker-scip "How to install pyscipopt in docker"
