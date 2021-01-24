@@ -7,11 +7,10 @@ description: How to implement feature selection using genetic algorithm provided
 keywords: python genetic-algorithm deap feature-selection catboostregressor
 ---
 
-This post presents an approach used for solving 
-[Kaggle LANL Earthquake Prediction Challenge](https://www.kaggle.com/c/LANL-Earthquake-Prediction/overview/description).
-All the data and source codes you can find in [this repository](https://github.com/viktorsapozhok/earthquake-prediction).
+This post presents an approach used for solving [Kaggle LANL Earthquake Prediction Challenge][1].
+All the data and source codes you can find in [this repository][2].
 
-For feature engineering we used [this kernel](https://www.kaggle.com/artgor/even-more-features) (slightly modified for adding some spectral features). 
+For feature engineering we used [this kernel][3], slightly modified for adding some spectral features. 
 The initial training set `/data/train.csv` contains 4194 rows (one row for each segment) and 1496 columns (features).
 We applied genetic algorithm with CatboostRegressor for fitness evaluation to implement a feature selection. 
 Based on the GA's results, we selected [15 features](https://github.com/viktorsapozhok/earthquake-prediction/blob/master/src/earthquake/submission.py) and
@@ -57,14 +56,12 @@ To start the genetic algorithm implementing feature selection, launch `ga.py` sc
 
 The initial acoustic signal is decomposed into segments with 150000 rows per segment, 
 which suggests that the training dataset has 4194 rows. Features are calculated as aggregations over segments.
-For more details see, for example, 
-[here](https://www.kaggle.com/gpreda/lanl-earthquake-eda-and-prediction) and 
-[here](https://www.kaggle.com/artgor/even-more-features).      
+For more details see, for example, [here][3] and [here][4].      
 
 ### Baseline model
 
 Before we start with the feature selection, we calculate feature importance as it is explained 
-[here](https://explained.ai/rf-importance/index.html) and train the baseline model on the 15 most important features.
+[here][5] and train the baseline model on the 15 most important features.
 
 ```python
 from earthquake import config, utils
@@ -297,9 +294,10 @@ The observed results are used for submission.
 
 `Cross-validation MAE`: 2.048, `public score`: 1.509, `private score`: 2.425 (31 place). 
    
-### Links:
+### Reference
 
-* [LANL Earthquake Prediction, Kaggle competition](https://www.kaggle.com/c/LANL-Earthquake-Prediction)
-* [Feature Engineering](https://www.kaggle.com/artgor/even-more-features)
-* [LANL Earthquake EDA and Prediction](https://www.kaggle.com/gpreda/lanl-earthquake-eda-and-prediction)
-* ["Beware Default Random Forest Importances"](https://explained.ai/rf-importance/index.html)
+[1] https://www.kaggle.com/c/LANL-Earthquake-Prediction/overview/description "Kaggle LANL Earthquake Prediction Challenge"
+[2] https://github.com/viktorsapozhok/earthquake-prediction "Feature selection using genetic algorithm provided by DEAP package"
+[3] https://www.kaggle.com/artgor/even-more-features "Feature engineering"
+[4] https://www.kaggle.com/gpreda/lanl-earthquake-eda-and-prediction "LANL Earthquake EDA and Prediction"
+[5] https://explained.ai/rf-importance/index.html "Beware Default Random Forest Importances"
