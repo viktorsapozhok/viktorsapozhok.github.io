@@ -234,7 +234,7 @@ And that's how the panel looks like.
 
 ## Repository
 
-All data and source codes can be found in the repository: 
+All data and source codes can be found in [this][5] repository.
 
 [https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana](https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana)
 
@@ -242,3 +242,4 @@ All data and source codes can be found in the repository:
 [2]: https://docs.docker.com/compose/install
 [3]: http://postgresguide.com/utilities/psql.html
 [4]: https://grafana.com/docs/grafana/latest/datasources/add-a-data-source/ "Add a data source in Grafana"
+[5]: https://github.com/viktorsapozhok/docker-postgres-influxdb-grafana "Docker app with postgres, influxdb and grafana"
