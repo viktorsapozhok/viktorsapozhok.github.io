@@ -3,7 +3,7 @@ layout: post
 title: "Running automated tasks with CronJob in Azure Kubernetes Service."
 slug: kubernetes-cronjob-tutorial
 description: How to deploy cron job in kubernetes, configure kubernetes cluster, scale cluster to zero with autoscaler, automate deployment with makefile.
-keywords: kubernetes cronjob autoscaler makefile docker container-registry
+keywords: kubernetes cronjob autoscaler makefile docker slack azure-container-registry azure-kubernetes-service
 ---
 
 This tutorial provides a guide on how to deploy cron jobs to Azure Kubernetes Service (AKS), automate the 
