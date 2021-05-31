@@ -893,7 +893,9 @@ job.name = $(aks.namespace)-$(subst _,-,$(JOB))
 time.now = $(shell date +"%Y.%m.%d.%H.%M")
 
 run-job-now:
-	kubectl --namespace $(aks.namespace) create job --from=cronjob/$(job.name) $(job.name)-$(time.now)
+	kubectl create job \
+	--namespace $(aks.namespace) \
+	--from=cronjob/$(job.name) $(job.name)-$(time.now)
 ```
 
 Now issuing `make run-job-now JOB=job1` from the root directory, you will start `job1`. 
