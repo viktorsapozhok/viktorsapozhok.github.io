@@ -2,7 +2,7 @@
 layout: post
 title: "Running tasks with cronjob in Azure Kubernetes Service."
 slug: kubernetes-cronjob-tutorial
-description: How to deploy cron job in kubernetes, configure kubernetes cluster, scale cluster to zero with autoscaler, automate deployment with makefile.
+description: How to deploy cron job in kubernetes, configure kubernetes cluster, scale cluster to zero with autoscaler, run cron job manually, automate deployment with makefile.
 keywords: kubernetes cronjob autoscaler makefile docker slack azure-container-registry azure-kubernetes-service
 ---
 
@@ -515,7 +515,7 @@ Application is running in Kubernetes cluster and sending messages to slack.
 
 <img src="https://github.com/viktorsapozhok/kubernetes-cronjob-tutorial/blob/master/docs/source/images/slack_3.png?raw=true" width="700">
 
-To retrieve the application logs from the pod, you can use `kubectl logs` command
+To retrieve cron job logs from Kubernetes, you can use `kubectl logs` command
 
 ```bash
 $ kubectl --namespace app get pods
