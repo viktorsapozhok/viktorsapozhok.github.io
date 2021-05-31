@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Running automated tasks with CronJob in Azure Kubernetes Service."
+title: "Running tasks with cronjob in Azure Kubernetes Service."
 slug: kubernetes-cronjob-tutorial
 description: How to deploy cron job in kubernetes, configure kubernetes cluster, scale cluster to zero with autoscaler, automate deployment with makefile.
 keywords: kubernetes cronjob autoscaler makefile docker slack azure-container-registry azure-kubernetes-service
@@ -14,7 +14,7 @@ You will learn how to:
 * Prepare a Python app for deployment to AKS and build a docker image.
 * Create an Azure container registry and push images to the registry.
 * Create and configure a Kubernetes cluster, scale it down to zero with autoscaler.
-* Schedule and deploy jobs to Kubernetes cluster.
+* Schedule and deploy jobs to Kubernetes cluster, run cron job manually.   
 * Automate the deployment process with Makefile.
 
 Here is the link to [github repository][1].
@@ -870,7 +870,30 @@ Here is what we receive in slack channel.
 
 <img src="https://github.com/viktorsapozhok/kubernetes-cronjob-tutorial/blob/master/docs/source/images/slack_4.png?raw=true" width="700">
 
-## 8. Multiple node pools setup
+## 8. Run cron job manually
+
+Sometimes, we need to restart a failed job, or start it manually for testing purposes. 
+To do this, we can use `kubectl create job` command. We can also append the current time
+to job's name to display when exactly it was running.
+
+Makefile config for the manual running looks following.
+
+```makefile
+JOB ?=
+
+get_param = yq e .$(1) deployment.yml
+
+aks.namespace := $(shell $(call get_param,aks.namespace))
+job.name = $(aks.namespace)-$(subst _,-,$(JOB))
+time.now = $(shell date +"%Y.%m.%d.%H.%M")
+
+run-job-now:
+	kubectl --namespace $(aks.namespace) create job --from=cronjob/$(job.name) $(job.name)-$(time.now)
+```
+
+Now issuing `make run-job-now JOB=job1` from the root directory, you will start `job1`. 
+
+## 9. Multiple node pools setup
 
 Until now, we have used only one node pool, contained nodes with Standard_DS2_v2 size.
 In case, you have a job required more resources, e.g. high memory utilization, NVIDIA GPUs etc, 
