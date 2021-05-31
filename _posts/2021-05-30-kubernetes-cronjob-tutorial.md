@@ -873,10 +873,15 @@ Here is what we receive in slack channel.
 ## 8. Run cron job manually
 
 Sometimes, we need to restart a failed job, or start it manually for testing purposes. 
-To do this, we can use `kubectl create job` command. We can also append the current time
-to job's name to display when exactly it was running.
+To do this, we can use `kubectl create job` command as simply as following:
 
-Makefile config for the manual running looks following.
+```bash
+$ kubectl create job --namespace app --from=cronjob/app-job1 app-job1-run-now  
+job.batch/app-job1-run-now created
+```
+
+We can also append the current time to job's name to display when exactly it was running, and
+create a new target in Makefile.
 
 ```makefile
 JOB ?=
