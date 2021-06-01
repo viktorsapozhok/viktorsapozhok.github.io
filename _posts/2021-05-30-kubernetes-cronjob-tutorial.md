@@ -145,7 +145,9 @@ Now that we have installed our application and docker software, we can build a d
 for the application and run it inside the container. To do that, we create a Dockerfile, a text file
 that contains a list of instructions, which describes how a docker image is built.
 
-We store Dockerfile in the project root directory and add the following instructions to it:
+We store [Dockerfile][4] in the project root directory and add the following instructions to it:
+
+[4]: https://github.com/viktorsapozhok/kubernetes-cronjob-tutorial/blob/master/Dockerfile "Dockerfile"
 
 ```dockerfile
 FROM python:3.9-slim
@@ -182,7 +184,9 @@ docker will install it again every time we change something in the application c
 and rebuild the image. Therefore, if we want to reduce the building time, we use two
 layers for installation, one for requirements, one for application. 
 
-We also modify `setup.py` to dynamically read the list of requirements from file:
+We also modify [setup.py][5] to dynamically read the list of requirements from file:
+
+[5]: https://github.com/viktorsapozhok/kubernetes-cronjob-tutorial/blob/master/setup.py "setup.py"
 
 ```python
 from setuptools import setup
@@ -287,9 +291,9 @@ If everything works, you will receive message in slack channel.
 Azure Container Registry (ACR) is a private registry for container images, it allows
 you to build, store, and manage container images. In this tutorial, we deploy an ACR instance
 and push a docker image to it. This requires that you have Azure CLI installed. Follow the
-[official guide][4] if you need to install it.
+[official guide][6] if you need to install it.
 
-[4]: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli "Install Azure CLI"
+[6]: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli "Install Azure CLI"
 
 To create an ACR instance, we need to have a resource group, a logical container that
 includes all the related resources to your solution. Create a new group with `az group create` command or
@@ -542,8 +546,10 @@ Suppose that we have 3 jobs with different schedules, and we want
 to deploy them with a single command. To do this, we can replace the constants in the manifest
 by placeholders and substitute them in a loop with corresponding values based on our deployment setup file.
 
-First, let's create a file called `deployment.yml` and place it in the root directory. In this file,
+First, let's create a file called [deployment.yml][7] and place it in the root directory. In this file,
 we will store all the parameters used for deployment process.
+
+[7]: https://github.com/viktorsapozhok/kubernetes-cronjob-tutorial/blob/master/deployment.yml "deployment.yml"
 
 ```yaml
 rg: 
@@ -567,10 +573,11 @@ jobs:
 ```
 
 As long as we are going to aggregate multiple shell commands into single command, we 
-need a Makefile. Let's create one in the project's root directory. To read the contents
-of a YAML file from Makefile, we can use `yq` utility. Documentation on it can be found [here][5].
+need a [Makefile][8]. Let's create one in the project's root directory. To read the contents
+of a YAML file from Makefile, we can use `yq` utility. Documentation on it can be found [here][9].
 
-[5]: https://mikefarah.gitbook.io/yq/ "yq is a lightweight and portable command-line YAML processor"
+[8]: https://github.com/viktorsapozhok/kubernetes-cronjob-tutorial/blob/master/Makefile "Makefile"
+[9]: https://mikefarah.gitbook.io/yq/ "Lightweight and portable command-line YAML processor"
 
 On linux it can be installed via snap. We need `v4` version.
 
@@ -578,7 +585,7 @@ On linux it can be installed via snap. We need `v4` version.
 $ snap install yq
 ```
 
-In Makefile, we create a function `get_param` reading data from YAML file. It can be organized as follows:
+In [Makefile][8], we create a function `get_param` reading data from YAML file. It can be organized as follows:
 
 ```makefile
 get_param = yq e .$(1) deployment.yml
@@ -648,7 +655,9 @@ command: myapp --job JOB-3 --slack
 We are almost there. Now, all we need is to replace constants in manifest by placeholders
 and dynamically substitute these placeholders by corresponding values in a loop.
 
-Here is how `aks-manifest.yml` looks after replacement the constants:
+Here is how [aks-manifest.yml][10] looks after replacement the constants:
+
+[10]: https://github.com/viktorsapozhok/kubernetes-cronjob-tutorial/blob/master/aks-manifest.yml "aks-manifest.yml"
 
 ```yaml
 apiVersion: batch/v1beta1
@@ -758,7 +767,7 @@ spec:
   failedJobsHistoryLimit: 2
 ```
 
-Now putting it all together, we get following:
+Now putting it all together, we get the following [Makefile][8] setup:
 
 ```makefile
 JOB ?=
@@ -1099,6 +1108,4 @@ That's it. We have successfully configured our kubernetes cluster for the case o
 
 ## 9. Repository
 
-Repository with this tutorial can be found [here][6]. Star it, if you find it useful.
-
-[6]: https://github.com/viktorsapozhok/kubernetes-cronjob-tutorial "kubernetes-cronjob-tutorial"
+Repository with this tutorial can be found [here][1]. Star it, if you find it useful.
