@@ -880,7 +880,7 @@ Here is what we receive in slack channel.
 
 <img src="https://github.com/viktorsapozhok/kubernetes-cronjob-tutorial/blob/master/docs/source/images/slack_4.png?raw=true" width="700">
 
-## 8. Run cron job manually
+## 8. Run cron job manually as a one time job
 
 Sometimes, we need to restart a failed job, or start it manually for testing purposes. 
 To do this, we can use `kubectl create job` command as simply as following:
