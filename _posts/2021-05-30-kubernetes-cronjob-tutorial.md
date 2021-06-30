@@ -1077,8 +1077,8 @@ Events:
   Type     Reason            Age                    From                Message
   ----     ------            ----                   ----                -------
   Normal   TriggeredScaleUp  6m9s                   cluster-autoscaler  pod triggered scale-up: [{aks-turbo-72918754-vmss 0->1 (max: 1)}]
-  Warning  FailedScheduling  4m53s (x3 over 6m13s)  default-scheduler   0/1 nodes are available: 1 node(s) didn't match node selector.
-  Warning  FailedScheduling  4m27s (x2 over 4m36s)  default-scheduler   0/2 nodes are available: 1 node(s) didn't match node selector, 1 node(s) had taint {node.kubernetes.io/not-ready: }, that the pod didn't tolerate.
+  Warning  FailedScheduling  4m53s (x3 over 6m13s)  default-scheduler   0/1 nodes are available: 1 node(s) didnt match node selector.
+  Warning  FailedScheduling  4m27s (x2 over 4m36s)  default-scheduler   0/2 nodes are available: 1 node(s) didnt match node selector, 1 node(s) had taint {node.kubernetes.io/not-ready: }, that the pod didnt tolerate.
   Normal   Scheduled         4m16s                  default-scheduler   Successfully assigned app/app-job4-2021.05.30.23.07-gbrfs to aks-turbo-72918754-vmss000001
   Normal   Pulling           4m15s                  kubelet             Pulling image "vanillacontainerregistry.azurecr.io/app:v0.1"
   Normal   Pulled            4m11s                  kubelet             Successfully pulled image "vanillacontainerregistry.azurecr.io/app:v0.1" in 4.337866521s
