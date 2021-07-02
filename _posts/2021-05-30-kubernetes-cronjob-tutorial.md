@@ -1109,4 +1109,4 @@ That's it. We have successfully configured our kubernetes cluster for the case o
 
 ## 9. Repository
 
-Repository with this tutorial can be found [here][1]. Star it, if you find it useful.
+Repository with this tutorial can be found [here][1].
