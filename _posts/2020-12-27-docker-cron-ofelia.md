@@ -6,6 +6,15 @@ description: How to run python script in a docker container by cron as a non-roo
 keywords: docker python cron crontab ofelia scheduler non-root
 ---
 
+<div class="blog-card">
+<h3 class="m-0">Project Source Code</h3>
+<h5 class="m-1"><a href="https://github.com/viktorsapozhok/docker-python-ofelia">github.com/viktorsapozhok/docker-python-ofelia</a></h5>
+<a class="github-button" href="https://github.com/viktorsapozhok/docker-python-ofelia" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star viktorsapozhok/docker-python-ofelia on GitHub">Star</a>
+<a class="github-button" href="https://github.com/viktorsapozhok/docker-python-ofelia/fork" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork viktorsapozhok/docker-python-ofelia on GitHub">Fork</a>
+<a class="github-button" href="https://github.com/viktorsapozhok" data-size="large" data-show-count="true" aria-label="Follow @viktorsapozhok on GitHub">Follow @viktorsapozhok</a>
+</div>
+<br/>
+
 Let's assume we have a Python app printing current time to stdout, and we want 
 to run it by schedule within docker container. How to do it?
 
@@ -135,10 +144,5 @@ Now running the service, you will be receiving the following messages in Slack c
 
 As a result, we have a job running by schedule inside the container with the execution log redirected to the Slack channel.
 
-## Repository
-
-You can find docker setup in the [repository][3]
-
 [1]: https://github.com/mcuadros/ofelia "Ofelia - a docker job scheduler"
 [2]: https://api.slack.com/messaging/webhooks "Sending messages using Incoming Webhooks"
-[3]: https://github.com/viktorsapozhok/docker-python-ofelia "Running Python app by cron as a non-root user in a Docker container using Ofelia scheduler"

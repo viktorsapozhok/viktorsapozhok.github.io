@@ -12,6 +12,15 @@ In this tutorial, we demonstrate how to solve a small-scale optimization problem
 with Python, and explain how to build a docker container with SCIP and PySCIPOpt, to solve 
 the optimization problem inside the container.
 
+<br/>
+<div class="blog-card">
+<h3 class="m-0">Project Source Code</h3>
+<h5 class="m-1"><a href="https://github.com/viktorsapozhok/docker-scip">github.com/viktorsapozhok/docker-scip</a></h5>
+<a class="github-button" href="https://github.com/viktorsapozhok/docker-scip" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star viktorsapozhok/docker-scip on GitHub">Star</a>
+<a class="github-button" href="https://github.com/viktorsapozhok/docker-scip/fork" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork viktorsapozhok/docker-scip on GitHub">Fork</a>
+<a class="github-button" href="https://github.com/viktorsapozhok" data-size="large" data-show-count="true" aria-label="Follow @viktorsapozhok on GitHub">Follow @viktorsapozhok</a>
+</div>
+
 ## Why to choose SCIP
 
 SCIP is currently one of the fastest non-commercial solvers for mixed integer programming (MIP) and
@@ -278,7 +287,3 @@ To stop the running container, use `down` command:
 ```shell
 docker-compose down
 ```
-
-For more details see the [repository][1].
-
-[1]: https://github.com/viktorsapozhok/docker-scip "How to install pyscipopt in docker"

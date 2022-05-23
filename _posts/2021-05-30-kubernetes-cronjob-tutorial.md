@@ -18,9 +18,16 @@ You will learn how to:
 * Run cron job manually as a one time job.   
 * Automate the deployment process with Makefile.
 
-Here is the link to [github repository][1].
-
 [1]: https://github.com/viktorsapozhok/kubernetes-cronjob-tutorial "kubernetes-cronjob-tutorial"
+
+<br/>
+<div class="blog-card">
+<h3 class="m-0">Project Source Code</h3>
+<h5 class="m-1"><a href="https://github.com/viktorsapozhok/kubernetes-cronjob-tutorial">github.com/viktorsapozhok/kubernetes-cronjob-tutorial</a></h5>
+<a class="github-button" href="https://github.com/viktorsapozhok/kubernetes-cronjob-tutorial" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star viktorsapozhok/kubernetes-cronjob-tutorial on GitHub">Star</a>
+<a class="github-button" href="https://github.com/viktorsapozhok/kubernetes-cronjob-tutorial/fork" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork viktorsapozhok/kubernetes-cronjob-tutorial on GitHub">Fork</a>
+<a class="github-button" href="https://github.com/viktorsapozhok" data-size="large" data-show-count="true" aria-label="Follow @viktorsapozhok on GitHub">Follow @viktorsapozhok</a>
+</div>
 
 ## 1. Clone and install the application
 
@@ -1106,7 +1113,3 @@ Events:
 ```
 
 That's it. We have successfully configured our kubernetes cluster for the case of multiple pools.
-
-## 9. Repository
-
-Repository with this tutorial can be found [here][1].

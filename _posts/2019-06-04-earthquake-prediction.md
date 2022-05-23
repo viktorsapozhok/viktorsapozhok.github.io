@@ -8,12 +8,20 @@ keywords: python genetic-algorithm deap feature-selection catboostregressor
 ---
 
 This post presents an approach used for solving [Kaggle LANL Earthquake Prediction Challenge][1].
-All the data and source codes you can find in [this repository][2].
 
-For feature engineering we used [this kernel][3], slightly modified for adding some spectral features. 
+For feature engineering we used [this kernel][2], slightly modified for adding some spectral features. 
 The initial training set `/data/train.csv` contains 4194 rows (one row for each segment) and 1496 columns (features).
 We applied genetic algorithm with CatboostRegressor for fitness evaluation to implement a feature selection. 
 Based on the GA's results, we selected 15 features and trained the model using CatboostRegressor with default parameters.
+
+<br/>
+<div class="blog-card">
+<h3 class="m-0">Project Source Code</h3>
+<h5 class="m-1"><a href="https://github.com/viktorsapozhok/earthquake-prediction">github.com/viktorsapozhok/earthquake-prediction</a></h5>
+<a class="github-button" href="https://github.com/viktorsapozhok/earthquake-prediction" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star viktorsapozhok/earthquake-prediction on GitHub">Star</a>
+<a class="github-button" href="https://github.com/viktorsapozhok/earthquake-prediction/fork" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork viktorsapozhok/earthquake-prediction on GitHub">Fork</a>
+<a class="github-button" href="https://github.com/viktorsapozhok" data-size="large" data-show-count="true" aria-label="Follow @viktorsapozhok on GitHub">Follow @viktorsapozhok</a>
+</div>
 
 ### Project structure
 
@@ -294,7 +302,6 @@ The observed results are used for submission.
 `Cross-validation MAE`: 2.048, `public score`: 1.509, `private score`: 2.425 (31 place). 
    
 [1]: https://www.kaggle.com/c/LANL-Earthquake-Prediction/overview/description "Kaggle LANL Earthquake Prediction Challenge"
-[2]: https://github.com/viktorsapozhok/earthquake-prediction "Feature selection using genetic algorithm provided by DEAP package"
-[3]: https://www.kaggle.com/artgor/even-more-features "Feature engineering"
-[4]: https://www.kaggle.com/gpreda/lanl-earthquake-eda-and-prediction "LANL Earthquake EDA and Prediction"
-[5]: https://explained.ai/rf-importance/index.html "Beware Default Random Forest Importances"
+[2]: https://www.kaggle.com/artgor/even-more-features "Feature engineering"
+[3]: https://www.kaggle.com/gpreda/lanl-earthquake-eda-and-prediction "LANL Earthquake EDA and Prediction"
+[4]: https://explained.ai/rf-importance/index.html "Beware Default Random Forest Importances"
