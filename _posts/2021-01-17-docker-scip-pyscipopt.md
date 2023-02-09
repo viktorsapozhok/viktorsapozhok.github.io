@@ -14,8 +14,7 @@ the optimization problem inside the container.
 
 <br/>
 <div class="blog-card">
-<h3 class="m-0">Project Source Code</h3>
-<h5 class="m-1"><a href="https://github.com/viktorsapozhok/docker-scip">github.com/viktorsapozhok/docker-scip</a></h5>
+<h7 class="m-1">source code repository: <a href="https://github.com/viktorsapozhok/docker-scip">viktorsapozhok/docker-scip</a></h7><br/><br/>
 <a class="github-button" href="https://github.com/viktorsapozhok/docker-scip" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star viktorsapozhok/docker-scip on GitHub">Star</a>
 <a class="github-button" href="https://github.com/viktorsapozhok/docker-scip/fork" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork viktorsapozhok/docker-scip on GitHub">Fork</a>
 <a class="github-button" href="https://github.com/viktorsapozhok" data-size="large" data-show-count="true" aria-label="Follow @viktorsapozhok on GitHub">Follow @viktorsapozhok</a>

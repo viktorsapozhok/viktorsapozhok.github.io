@@ -22,8 +22,7 @@ You will learn how to:
 
 <br/>
 <div class="blog-card">
-<h3 class="m-0">Project Source Code</h3>
-<h5 class="m-1"><a href="https://github.com/viktorsapozhok/kubernetes-cronjob-tutorial">github.com/viktorsapozhok/kubernetes-cronjob-tutorial</a></h5>
+<h7 class="m-1">source code repository: <a href="https://github.com/viktorsapozhok/kubernetes-cronjob-tutorial">viktorsapozhok/kubernetes-cronjob-tutorial</a></h7><br/><br/>
 <a class="github-button" href="https://github.com/viktorsapozhok/kubernetes-cronjob-tutorial" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star viktorsapozhok/kubernetes-cronjob-tutorial on GitHub">Star</a>
 <a class="github-button" href="https://github.com/viktorsapozhok/kubernetes-cronjob-tutorial/fork" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork viktorsapozhok/kubernetes-cronjob-tutorial on GitHub">Fork</a>
 <a class="github-button" href="https://github.com/viktorsapozhok" data-size="large" data-show-count="true" aria-label="Follow @viktorsapozhok on GitHub">Follow @viktorsapozhok</a>
