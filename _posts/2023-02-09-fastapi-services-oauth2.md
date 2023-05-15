@@ -1,14 +1,14 @@
 ---
 layout: post
-title: "Structuring FastAPI app with multiple services, OAuth2 with JWT tokens, and Postgres backend."
+title: "Structuring FastAPI applications with multiple service logic, Postgres integration, and OAuth2 password authentication."
 slug: fastapi-oauth2-postgres
-description: How to structure FastAPI app with multiple services, OAuth2 with Bearer and JWT tokens, and Postgres backend.
+description: Learn how to effectively structure a FastAPI application with multiple services, integrate with a Postgres backend, implement OAuth2 password authentication.
 keywords: fastapi oauth2 jwt postgres
 ---
 
-This tutorial provides an approach on how to structure FastAPI application with 
-multiple services, simple OAuth2 Password authentication with Bearer and JWT tokens, 
-and Postgres backend. 
+This tutorial provides an approach on how to effectively structure a FastAPI application
+simplifying the implementation of multiple service logic, integrate it with Postgres backend, 
+and implement straightforward OAuth2 Password authentication using Bearer and JWT tokens. 
 
 <br/>
 <div class="blog-card">
@@ -20,13 +20,24 @@ and Postgres backend.
 
 ## Structure overview
 
-Application consists of 4 packages which provide service related functionality: 
-`routers`, `services`, `schemas`, and `models`. Adding a new service requires 
-adding a new module in each of these packages. 
+The application consists of four packages that offer service related functionality: 
+`routers`, `services`, `schemas`, and `models`. To introduce a new service, it is necessary 
+to add a new module within each of these packages. The proposed structure is designed in a manner 
+that is somewhat similar to the three-tier architecture pattern. 
 
-Package `backend` provides database session manager and configs. In case, application 
-communicates not only with database, but also with other backends (e.g. other API), 
-the corresponding clients can be placed in `backend`.
+In this structure, the `routers` package serves as the user interface (UI) interaction layer. 
+Each service comprises two components: (1) an application processing layer, implemented 
+as a subclass of the `AppService` class, and (2) a data processing layer, implemented 
+as a subclass of the `AppCRUD` class.
+
+The `models` package provides SQLAlchemy mappings that establish the relationship between 
+database objects and Python classes, while the `schemas` package represents serialized 
+data models (Pydantic models) that are used throughout the application and as response objects.
+
+The `backend` package provides a database session manager and application configuration
+class. In scenarios where the application interacts with not only a database but also 
+other backends, such as additional APIs, the respective clients can be placed within 
+the `backend` package.
 
 ```bash
     .
@@ -54,22 +65,22 @@ the corresponding clients can be placed in `backend`.
         └── main.py             # Application runner
 ```
 
-Module `cli` provides command-line functionality related to API services but not required
-access through API endpoints. It's main focus is to complete tasks that need to be done 
-manually or by scheduler. For instance, create a new user and store its hashed data in database.
+The `cli` module provides command-line functionality that is associated with API services but
+does not require access through API endpoints. It contains commands that can be executed
+from the command line to perform specific tasks, i.e. data manipulation, database operations, etc.
 
 Module `main` represents FastAPI entry point and initiates `app` object (instance of `FastAPI` class).
-This `app` is referred by server when running `uvicorn main:app` command.
+The `app` object is then referred by server when running `uvicorn main:app` command.
 
 ## Adding a new service
 
-To illustrate the approach, let's create a simple service reading data from
-postgres backend and sending it back to user. 
+To illustrate the approach, we will create a basic service that retrieves data from a 
+Postgres backend and returns it to the user. 
 
 ### Backend setup
 
-First, we create a database schema called `myapi` and table `movies` in there. In this table,
-we insert list of records with following fields: `movie_id`, `title`, `released` (release year) and 
+First, we create a database schema named `myapi` and create a table called `movies`. In this table,
+we insert a list of records with following fields: `movie_id`, `title`, `released` (release year) and 
 `rating` (e.g. imdb rating).
 
 ```sql
@@ -85,9 +96,9 @@ CREATE TABLE IF NOT EXISTS myapi.movies (
 
 ### Models
 
-As a next step, we create a new file `models/movies.py` and declare there all 
-SQLAlchemy models used across `movies` service. Models provide a mapping between database
-objects and corresponding Python classes.
+As the next step, we create a new file `models/movies.py` and declare there all the
+SQLAlchemy models that are used within `movies` service. These models provide a mapping 
+between the database objects and the corresponding Python classes.
 
 ```python
 from sqlalchemy.orm import (
@@ -112,13 +123,13 @@ class MovieModel(SQLModel):
 
 ### Schemas
 
-Package `schemas` provides Pydantic models that are used to serialize data used throughout
-the application. Schemas can provide a middle layer between source data (SQLAlchemy models)
-and application output. They are also used as the response objects.
+The `schemas` package provides Pydantic models that are used as an intermediary layer between
+the source data (SQLAlchemy models) and the application output. Additionally, they are
+used as the response objects.
 
-As a next step, we create a new file `schemas/movies.py` and declare there all schemas 
-(Pydantic models) used across `movies` service. In our case, it will be a single `MovieSchema`
-used as a request response model.
+Moving forward, we create a new file named `schemas/movies.py`. Within this file, we declare 
+all the schemas that are utilized within the `movies` service. In this specific case, 
+we will have a single `MovieSchema` used as a request response model.
 
 ```python
 from pydantic import BaseModel
