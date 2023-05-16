@@ -3,12 +3,12 @@ layout: post
 title: "Structuring FastAPI applications with multiple service logic, Postgres integration, and OAuth2 password authentication."
 slug: fastapi-oauth2-postgres
 description: Learn how to effectively structure a FastAPI application with multiple services, integrate with a Postgres backend, implement OAuth2 password authentication.
-keywords: fastapi oauth2 jwt postgres
+keywords: fastapi 3-tier oauth2 jwt postgres
 ---
 
 This tutorial provides an approach on how to effectively structure a FastAPI application
 simplifying the implementation of multiple service logic, integrate it with Postgres backend, 
-and implement straightforward OAuth2 Password authentication using Bearer and JWT tokens. 
+and implement straightforward OAuth2 Password authentication flow using Bearer and JSON Web Tokens (JWT). 
 
 <br/>
 <div class="blog-card">
@@ -23,7 +23,9 @@ and implement straightforward OAuth2 Password authentication using Bearer and JW
 The application consists of four packages that offer service related functionality: 
 `routers`, `services`, `schemas`, and `models`. To introduce a new service, it is necessary 
 to add a new module within each of these packages. The proposed structure is designed in a manner 
-that is somewhat similar to the three-tier architecture pattern. 
+that is somewhat similar to the [three-tier architecture pattern][1]. 
+
+[1]: https://github.com/faif/python-patterns/blob/master/patterns/structural/3-tier.py "3-tier design pattern" 
 
 In this structure, the `routers` package serves as the user interface (UI) interaction layer. 
 Each service comprises two components: (1) an application processing layer, implemented 
@@ -32,7 +34,7 @@ as a subclass of the `AppCRUD` class.
 
 The `models` package provides SQLAlchemy mappings that establish the relationship between 
 database objects and Python classes, while the `schemas` package represents serialized 
-data models (Pydantic models) that are used throughout the application and as response objects.
+data models (Pydantic models) that are used throughout the application and as the response objects.
 
 The `backend` package provides a database session manager and application configuration
 class. In scenarios where the application interacts with not only a database but also 
@@ -74,8 +76,8 @@ The `app` object is then referred by server when running `uvicorn main:app` comm
 
 ## Adding a new service
 
-To illustrate the approach, we will create a basic service that retrieves data from a 
-Postgres backend and returns it to the user. 
+To illustrate the approach, we will create a basic service called `movies` that retrieves data from a 
+Postgres backend and returns it to the user.
 
 ### Backend setup
 
@@ -144,11 +146,11 @@ class MovieSchema(BaseModel):
 
 ### Routers
 
-Package `routers` enables to define path operations and keep it organized, i.e. 
-separate paths related to multiple services. As usual, let's create a new file for our
-service `routers/movies.py` and define there two entry points: `get_movie` that returns
-the movie given `movie_id`, and `get_new_movies` that implements selection with filtering
-by release year and movie rating.
+The `routers` package enables to define path operations and keep it organized, 
+allowing for the separation of paths associated with multiple services. 
+We create a new file called `routers/movies.py`. In this file, we will define two entry points: 
+`get_movie`, which retrieves the movie based on the provided `movie_id`, and `get_new_movies`, 
+which implements a selection with applied filtering based on release year and movie rating.
 
 ```python
 from typing import List
@@ -185,14 +187,19 @@ async def get_new_movies(
 
 ### Services
 
-As a last step, we create a new file `services/movies.py` where we implement service
-related logic, in our case it's simply reading data from corresponding database objects and
-converting it to the response schema.
+As a final step, we proceed by creating a new file called `services/movies.py`. 
+In this file, we will implement the specific logic associated with the `movies` 
+service. In our case, this involves fetching data from the relevant database objects and 
+transforming it into the desired response schema.
 
-Every service is a subclass of `AppService` class which provides database session object.
+Each service is implemented as a subclass of the `AppService` class, which provides an
+instance of the database session. This session can be delegated further down to the data 
+processing layer.
 
-Data access methods are isolated from service logic as a subclass of `AppCRUD` class 
-which provides helper functions for CRUD operations over database objects.
+To ensure separation of concerns, the data access methods are encapsulated within a subclass 
+of the `AppCRUD` class. This class offers convenience helpers for performing 
+CRUD (Create, Read, Update, Delete) operations on the database objects, 
+keeping them distinct from the main service logic.
 
 ```python
 from typing import List
@@ -238,9 +245,9 @@ class MovieCRUD(AppCRUD):
 
 ### Config
 
-Configuration settings are provided via `backend/config.py` module and can be read from
-environment variables prefixed with `MYAPI_`. It also supports dotenv parsing from `.env`
-file placed in project root directory. 
+Configuration settings are provided via `backend/config.py` module and can be obtained from
+environment variables with the `MYAPI_` prefix. Additionally, it supports parsing of 
+configuration settings from a `.env` file located in the project root directory.
 
 ```bash
 $ cat .env
@@ -251,7 +258,7 @@ MYAPI_DATABASE__DSN="postgresql://user:password@host:port/dbname"
 MYAPI_TOKEN_KEY="my_secret_key"
 ```
 
-Or you can initialize everything using environment variables only.
+If you want to provide database DSN from environment variable then you can use following:
 
 ```bash
 $ MYAPI_DATABASE__DSN="postgresql://..." uvicorn app.main:app
@@ -260,22 +267,22 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 ## Authentication
 
-Authentication service is integrated to application using the same design pattern
-we used for adding `movies` service.
+The authentication service is integrated into the application using the same design pattern
+we used for adding the `movies` service. We place a file called `auth.py` within each of the 
+four primary packages.
 
-For demonstration purposes, we use OAuth2 Password grant type as a protocol to get an 
-access token given `username` and `password`. The Password grant type is one of the
-simplest OAuth grants and involves only one step: the app provides a login form to collect
-user's credentials (username and password) and makes a POST request to the server in order
-to exchange the password for an access token.
+For demonstration purposes, the OAuth2 Password grant type is used as a protocol to obtain an 
+access token based on the provided `username` and `password`. The Password grant type represents 
+one of the simplest OAuth grants, involving a single step: the application provides a login 
+form to collect the user's credentials (username and password) and initiates a POST request 
+to the server to exchange the password for an access token.
 
-Note, that the Password grant is not recommended way as it requires the application collect
+Note, that while the Password grant is used in this tutorial for demonstration purposes, 
+it is not a recommended approach as it requires the application to collect and handle the
 user's password. Check the OAuth 2.0 security best practices to remove the Password grant
-from OAuth.
+from the OAuth implementation.
 
-### Backend setup
-
-Let's create table `users` in the backend database to store user information. 
+Let's create a table called `users` in the database.
 
 ```sql
 CREATE TABLE IF NOT EXISTS myapi.users (
@@ -287,12 +294,11 @@ CREATE TABLE IF NOT EXISTS myapi.users (
 );
 ```
 
-Application does not store user's plain password, it uses hashing algorithm to encode 
-passwords before writing data to database.
+The application uses a hashing algorithm to encode passwords before storing them in the
+database, ensuring that user passwords are not stored in plain text.
 
-We add `auth` module in each of four principal packages (the same as we did for `movies` service).
-`AuthService` class (see `services/auth.py` for details) below implements password hashing
-and adding user data to database table.
+The `AuthService` class below (see `services/auth.py` for details) is implemented to handle 
+password hashing and adding user data into the `users` table.
 
 ```python
 from passlib.context import CryptContext
@@ -331,9 +337,9 @@ class AuthCRUD(AppCRUD):
         self.add_one(user)
 ```
 
-The convenience methods for making CRUD operations over users can be added to command 
-line interface via `cli` module. Below is an example on how to create new user from 
-command-line.
+The convenience methods for performing CRUD operations on users can be incorporated using
+the `cli` module. The following example demonstrates the process of creating a new user
+from the command-line interface.
 
 ```python
 import click
@@ -358,29 +364,30 @@ def create_user(name: str, email: str, password: str) -> None:
     AuthService(session).create_user(user)
 ```
 
-Executing `create-user` command from command-line, the new record will be added to `users` table.
+Now executing the `create-user` command from the command-line, a new record will be added to the `users` table.
 
 ```bash
-myapi --name 'test user' --email test_user@myapi.com --password qwerty123
+myapi --name 'test user' --email test_user@myapi.com --password password
 ```
 
 ### Generating token
 
-Application obtains `username` and `password` sent by user through `OAuth2PasswordRequestForm` 
-form body via authentication endpoint. It extracts user information stored in database 
-and verifies hashed password with the plain password obtained from request.
+The application obtains `username` and `password` provided by the user through the 
+`OAuth2PasswordRequestForm` form body, which is transmitted via authentication endpoint. 
+It then extracts the user information stored in the database and verifies the hashed 
+password against the plain password obtained from the request.
 
-If verification succeeds, application generates temporary token and sends it back via 
-response model to the user.
+If verification succeeds, the application generates a temporary token and sends it back 
+to the user via the response model.
 
-To generate and verify JWT tokens, application uses `python-jose` library with recommended 
-cryptographic backend `pyca/cryptography`. To handle this process, we create random secret 
-key and pass it to `config` via environment variable `MYAPI_TOKEN_KEY` (can be set also 
-in dotenv file).
+To generate and verify JSON Web Tokens (JWT), the application utilizes the `python-jose` 
+library with the recommended cryptographic backend, `pyca/cryptography`. To handle this process, 
+a random secret key is generated and passed to the `config` module through the environment 
+variable `MYAPI_TOKEN_KEY` (which also can be set in a dotenv file).
 
-Example of token generation can be seen below. Method `authenticate` of `AuthService`
-class is triggered every time user sends request to authentication endpoint (see 
-`routers/auth.py` for details).
+An example of token generation can be seen below. The `authenticate` method is triggered 
+every time a user sends a request to the authentication endpoint. More details can be found
+in the `routers/auth.py` module.
 
 ```python
 from jose import jwt
@@ -409,7 +416,7 @@ class AuthService(AppService):
                 raise_with_log(status.HTTP_401_UNAUTHORIZED, "Incorrect password")
             else:
                 access_token = self._create_access_token(user.name, user.email)
-                return TokenSchema(access_token=access_token, token_type=TOKEN_TYPE)
+                return TokenSchema(access_token=access_token, token_type="bearer")
         return None
     
     def _create_access_token(self, name: str, email: str) -> str:
@@ -424,14 +431,16 @@ class AuthService(AppService):
 
 ### Verification
 
-User obtains JWT token from application and uses it to sign the request. To verify
-token, application extracts user information from decoded token and verifies user 
-validity and expiration time. If user is invalid or token has expired, it sends
-the corresponding error message, otherwise it's processing the request.
+The user acquires a JWT token from the application and utilizes it to sign the request.
+To verify it, the application extracts the user information from the decoded token,
+and verifies both the validity of the user and the token expiration time. If verification
+fails, the application sends a corresponding error message. Otherwise, it processes 
+the request.
 
-Function `get_current_user` is responsible for token verification. 
+The `get_current_user` function is responsible for token verification. 
 
 ```python
+from datetime import datetime
 from jose import (
     jwt,
     JWTError,
@@ -473,11 +482,15 @@ async def get_current_user(token: str = Depends(oauth2_schema)):
         raise_with_log(status.HTTP_401_UNAUTHORIZED, "Invalid credentials")
 
     return None
+
+
+def is_expired(expires_at: str) -> bool:
+    return datetime.strptime(expires_at, "%Y-%m-%d %H:%M:%S") < datetime.utcnow()
 ```
 
-Function `get_current_user` should be added as a dependency to every path operation
-function that requires authentication. For example, if we want to add authentication
-to `movies` service, we need to modify service routers in the following way.
+The `get_current_user` function needs to be included as a dependency in each path operation
+function that necessitates authentication. For instance, if we want to incorporate authentication
+into the `movies` service, we must modify the service routers as shown below:
 
 ```python
 from app.services.auth import get_current_user
@@ -494,7 +507,7 @@ async def get_movie(
 
 ## Running API
 
-Now putting it all together, let's run the application on localhost and test how it works.
+Now, putting it all together, let's run the application on the localhost and test how it works.
 
 ```bash
 $ uvicorn app.main:app
@@ -504,23 +517,32 @@ INFO:     Application startup complete.
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
-Server is running, and we can send the authentication request.
+Server is running, and we can reach Swagger UI from the browser.
 
-```bash
-$ curl -X 'POST' 'http://127.0.0.1:8000/token' -d 'username=test_user@myapi.com&password=qwerty123'
-{"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVz...","token_type":"bearer"}%  
-```
+<a href="https://github.com/viktorsapozhok/fastapi-services-oauth2/blob/master/docs/source/images/swagger.png?raw=true">
+    <img 
+        src="https://github.com/viktorsapozhok/fastapi-services-oauth2/blob/master/docs/source/images/swagger.png?raw=true" 
+        alt="FastAPI Swagger UI"
+    >
+</a>
 
-Authentication succeeded and we received access token.
-
-If we send request with incorrect login data, application will raise an error.
+Let's try to send the authentication request.
 
 ```bash
 $ curl -X 'POST' 'http://127.0.0.1:8000/token' -d 'username=test_user@myapi.com&password=password'
+{"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVz...","token_type":"bearer"}%  
+```
+
+Authentication succeeded, and we obtained an access token.
+
+If we attempt to send a request with incorrect login data, the application will raise an error.
+
+```bash
+$ curl -X 'POST' 'http://127.0.0.1:8000/token' -d 'username=test_user@myapi.com&password=qwerty'
 {"detail":"Incorrect password"}%  
 ```
 
-Now, let's generate request to `movies` service and sign it with the obtained token.
+Now, let's generate a request to the `movies` service and sign it using the obtained token.
 
 ```bash
 $ curl -X 'GET' 'http://127.0.0.1:8000/movies/new?year=1990&rating=9' -H 'Authorization: Bearer eyJhbGc...'
