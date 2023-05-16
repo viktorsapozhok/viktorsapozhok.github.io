@@ -367,7 +367,7 @@ def create_user(name: str, email: str, password: str) -> None:
 Now executing the `create-user` command from the command-line, a new record will be added to the `users` table.
 
 ```bash
-myapi --name 'test user' --email test_user@myapi.com --password password
+$ myapi --name 'test user' --email test_user@myapi.com --password password
 ```
 
 ### Generating token
