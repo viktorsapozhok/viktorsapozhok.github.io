@@ -27,34 +27,6 @@ that is somewhat similar to the [3-tier architecture pattern][1].
 
 [1]: https://github.com/faif/python-patterns/blob/master/patterns/structural/3-tier.py "3-tier design pattern" 
 
-In this structure, the `routers` package serves as the user interface (UI) interaction layer. 
-Each service comprises two components: (1) an application processing layer, implemented 
-as a subclass of the `AppService` class, and (2) a data processing layer, implemented 
-as a subclass of the `AppCRUD` class.
-
-The `models` package provides SQLAlchemy mappings that establish the relationship between 
-database objects and Python classes, while the `schemas` package represents serialized 
-data models (Pydantic models) that are used throughout the application and as the response objects.
-
-<a href="https://github.com/viktorsapozhok/fastapi-services-oauth2/blob/master/docs/source/images/3_tier.png?raw=true">
-    <img 
-        src="https://github.com/viktorsapozhok/fastapi-services-oauth2/blob/master/docs/source/images/3_tier.png?raw=true" 
-        alt="3-tier design pattern"
-    >
-</a>
-
-The `backend` package provides a database session manager and application configuration
-class. In scenarios where the application interacts with not only a database but also 
-other backends, such as additional APIs, the respective clients can be placed within 
-the `backend` package.
-
-The `cli` module provides command-line functionality that is associated with API services but
-does not require access through API endpoints. It contains commands that can be executed
-from the command line to perform specific tasks, i.e. data manipulation, database operations, etc.
-
-Module `main` represents FastAPI entry point and initiates `app` object (instance of `FastAPI` class).
-The `app` object is then referred by server when running `uvicorn main:app` command.
-
 ```bash
     .
     └── app/
@@ -80,6 +52,34 @@ The `app` object is then referred by server when running `uvicorn main:app` comm
         ├── exc.py              # Exception handlers
         └── main.py             # Application runner
 ```
+
+In this structure, the `routers` package serves as the user interface (UI) interaction layer. 
+Each service comprises two components: (1) an application processing layer, implemented 
+as a subclass of the `AppService` class, and (2) a data processing layer, implemented 
+as a subclass of the `AppCRUD` class.
+
+The `models` package provides SQLAlchemy mappings that establish the relationship between 
+database objects and Python classes, while the `schemas` package represents serialized 
+data models (Pydantic models) that are used throughout the application and as the response objects.
+
+The `backend` package provides a database session manager and application configuration
+class. In scenarios where the application interacts with not only a database but also 
+other backends, such as additional APIs, the respective clients can be placed within 
+the `backend` package.
+
+The `cli` module provides command-line functionality that is associated with API services but
+does not require access through API endpoints. It contains commands that can be executed
+from the command line to perform specific tasks, i.e. data manipulation, database operations, etc.
+
+Module `main` represents FastAPI entry point and initiates `app` object (instance of `FastAPI` class).
+The `app` object is then referred by server when running `uvicorn main:app` command.
+
+<a href="https://github.com/viktorsapozhok/fastapi-services-oauth2/blob/master/docs/source/images/3_tier.png?raw=true">
+    <img 
+        src="https://github.com/viktorsapozhok/fastapi-services-oauth2/blob/master/docs/source/images/3_tier.png?raw=true" 
+        alt="3-tier design pattern"
+    >
+</a>
 
 ## Adding a new service
 
