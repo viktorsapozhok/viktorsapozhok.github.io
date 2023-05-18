@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "Structuring FastAPI applications with multiple service logic, Postgres integration, and OAuth2 password authentication."
+title: "Structuring FastAPI application with multiple services using 3-tier design pattern."
 slug: fastapi-oauth2-postgres
-description: Learn how to effectively structure a FastAPI application with multiple services, integrate with a Postgres backend, implement OAuth2 password authentication.
+description: Learn how to effectively structure a FastAPI application with multiple services using 3-tier design pattern, integrate with a Postgres backend, implement OAuth2 password authentication.
 keywords: fastapi 3-tier oauth2 jwt postgres
 ---
 
 This tutorial provides an approach on how to effectively structure a FastAPI application
-simplifying the implementation of multiple service logic, integrate it with Postgres backend, 
+with multiple services using 3-tier design pattern, integrate it with Postgres backend, 
 and implement straightforward OAuth2 Password authentication flow using Bearer and JSON Web Tokens (JWT). 
 
 <br/>
@@ -23,7 +23,7 @@ and implement straightforward OAuth2 Password authentication flow using Bearer a
 The application consists of four packages that offer service related functionality: 
 `routers`, `services`, `schemas`, and `models`. To introduce a new service, it is necessary 
 to add a new module within each of these packages. The proposed structure is designed in a manner 
-that is somewhat similar to the [three-tier architecture pattern][1]. 
+that is somewhat similar to the [3-tier architecture pattern][1]. 
 
 [1]: https://github.com/faif/python-patterns/blob/master/patterns/structural/3-tier.py "3-tier design pattern" 
 
@@ -36,28 +36,42 @@ The `models` package provides SQLAlchemy mappings that establish the relationshi
 database objects and Python classes, while the `schemas` package represents serialized 
 data models (Pydantic models) that are used throughout the application and as the response objects.
 
+<a href="https://github.com/viktorsapozhok/fastapi-services-oauth2/blob/master/docs/source/images/3_tier.png?raw=true">
+    <img 
+        src="https://github.com/viktorsapozhok/fastapi-services-oauth2/blob/master/docs/source/images/3_tier.png?raw=true" 
+        alt="3-tier design pattern"
+    >
+</a>
+
 The `backend` package provides a database session manager and application configuration
 class. In scenarios where the application interacts with not only a database but also 
 other backends, such as additional APIs, the respective clients can be placed within 
 the `backend` package.
 
+The `cli` module provides command-line functionality that is associated with API services but
+does not require access through API endpoints. It contains commands that can be executed
+from the command line to perform specific tasks, i.e. data manipulation, database operations, etc.
+
+Module `main` represents FastAPI entry point and initiates `app` object (instance of `FastAPI` class).
+The `app` object is then referred by server when running `uvicorn main:app` command.
+
 ```bash
     .
     └── app/
-        ├── backend             # Backend functionality and configs
+        ├── backend/            # Backend functionality and configs
         |   ├── config.py           # Configuration settings
         │   └── database.py         # Database session manager
-        ├── models              # SQLAlchemy models
+        ├── models/             # SQLAlchemy models
         │   ├── auth.py             # Authentication models
         |   ├── base.py             # Base classes, mixins
         |   └── ...                 # Service models
-        ├── routers             # API routes
+        ├── routers/            # API routes
         |   ├── auth.py             # Authentication routers
         │   └── ...                 # Service routers
-        ├── schemas             # Pydantic models
+        ├── schemas/            # Pydantic models
         |   ├── auth.py              
         │   └── ...
-        ├── services            # Business logic
+        ├── services/           # Business logic
         |   ├── auth.py             # Create user, generate and verify tokens
         |   ├── base.py             # Base classes, mixins
         │   └── ...
@@ -66,13 +80,6 @@ the `backend` package.
         ├── exc.py              # Exception handlers
         └── main.py             # Application runner
 ```
-
-The `cli` module provides command-line functionality that is associated with API services but
-does not require access through API endpoints. It contains commands that can be executed
-from the command line to perform specific tasks, i.e. data manipulation, database operations, etc.
-
-Module `main` represents FastAPI entry point and initiates `app` object (instance of `FastAPI` class).
-The `app` object is then referred by server when running `uvicorn main:app` command.
 
 ## Adding a new service
 
