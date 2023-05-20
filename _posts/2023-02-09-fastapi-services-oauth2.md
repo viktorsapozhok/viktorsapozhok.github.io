@@ -79,6 +79,7 @@ The `app` object is then referred by server when running `uvicorn main:app` comm
         src="https://github.com/viktorsapozhok/fastapi-services-oauth2/blob/master/docs/source/images/3_tier.png?raw=true" 
         alt="3-tier design pattern"
     >
+    <em>Incorporating services using 3-tier design pattern</em>>
 </a>
 
 ## Adding a new service
