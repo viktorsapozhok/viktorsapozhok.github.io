@@ -74,12 +74,15 @@ from the command line to perform specific tasks, i.e. data manipulation, databas
 Module `main` represents FastAPI entry point and initiates `app` object (instance of `FastAPI` class).
 The `app` object is then referred by server when running `uvicorn main:app` command.
 
+The following diagram shows how to integrate services into an application using 3-tier
+design pattern.
+<br></br>
+
 <a href="https://github.com/viktorsapozhok/fastapi-services-oauth2/blob/master/docs/source/images/3_tier.png?raw=true">
     <img 
         src="https://github.com/viktorsapozhok/fastapi-services-oauth2/blob/master/docs/source/images/3_tier.png?raw=true" 
-        alt="3-tier design pattern"
+        alt="Incorporating FastAPI services using 3-tier design pattern"
     >
-    <em>Incorporating services using 3-tier design pattern</em>>
 </a>
 
 ## Adding a new service
