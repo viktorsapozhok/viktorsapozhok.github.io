@@ -32,14 +32,14 @@ that is somewhat similar to the [3-tier architecture pattern][1].
     └── app/
         ├── backend/            # Backend functionality and configs
         |   ├── config.py           # Configuration settings
-        │   └── database.py         # Database session manager
+        │   └── session.py          # Database session manager
         ├── models/             # SQLAlchemy models
         │   ├── auth.py             # Authentication models
         |   ├── base.py             # Base classes, mixins
-        |   └── ...                 # Service models
+        |   └── ...                 # Other service models
         ├── routers/            # API routes
         |   ├── auth.py             # Authentication routers
-        │   └── ...                 # Service routers
+        │   └── ...                 # Other service routers
         ├── schemas/            # Pydantic models
         |   ├── auth.py              
         │   └── ...
@@ -55,8 +55,8 @@ that is somewhat similar to the [3-tier architecture pattern][1].
 
 In this structure, the `routers` package serves as the user interface (UI) interaction layer. 
 Each service comprises two components: (1) an application processing layer, implemented 
-as a subclass of the `AppService` class, and (2) a data processing layer, implemented 
-as a subclass of the `AppCRUD` class.
+as a subclass of the `BaseService` class, and (2) a data processing layer, implemented 
+as a subclass of the `BaseDataManager` class.
 
 The `models` package provides SQLAlchemy mappings that establish the relationship between 
 database objects and Python classes, while the `schemas` package represents serialized 
@@ -90,7 +90,7 @@ Postgres backend and returns it to the user.
 
 First, we create a database schema named `myapi` and create a table called `movies`. In this table,
 we insert a list of records with following fields: `movie_id`, `title`, `released` (release year) and 
-`rating` (e.g. imdb rating).
+`rating` (e.g. IMDB rating).
 
 ```sql
 CREATE SCHEMA IF NOT EXISTS myapi;
@@ -110,19 +110,14 @@ SQLAlchemy models that are used within `movies` service. These models provide a 
 between the database objects and the corresponding Python classes.
 
 ```python
-from sqlalchemy.orm import (
-    Mapped,
-    mapped_column,
-)
+from sqlalchemy.orm import Mapped, mapped_column
 
 from app.models.base import SQLModel
 
 
 class MovieModel(SQLModel):
     __tablename__ = "movies"
-    __table_args__ = {
-        "schema": "myapi",
-    }
+    __table_args__ = {"schema": "myapi"}
 
     movie_id: Mapped[int] = mapped_column("movie_id", primary_key=True)
     title: Mapped[str] = mapped_column("title")
@@ -136,7 +131,7 @@ The `schemas` package provides Pydantic models that are used as an intermediary 
 the source data (SQLAlchemy models) and the application output. Additionally, they are
 used as the response objects.
 
-Moving forward, we create a new file named `schemas/movies.py`. Within this file, we declare 
+Moving forward, we create a new file named `schemas/movies.py`. In this file, we declare 
 all the schemas that are utilized within the `movies` service. In this specific case, 
 we will have a single `MovieSchema` used as a request response model.
 
@@ -162,13 +157,10 @@ which implements a selection with applied filtering based on release year and mo
 ```python
 from typing import List
 
-from fastapi import (
-    APIRouter,
-    Depends,
-)
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from app.backend.database import create_session
+from app.backend.session import create_session
 from app.schemas.movies import MovieSchema
 from app.services.movies import MovieService
 
@@ -177,17 +169,14 @@ router = APIRouter(prefix="/movies")
 
 @router.get("/", response_model=MovieSchema)
 async def get_movie(
-    movie_id: int,
-    session: Session = Depends(create_session),
+    movie_id: int, session: Session = Depends(create_session)
 ) -> MovieSchema:
     return MovieService(session).get_movie(movie_id)
 
 
 @router.get("/new", response_model=List[MovieSchema])
 async def get_new_movies(
-    year: int,
-    rating: float,
-    session: Session = Depends(create_session),
+    year: int, rating: float, session: Session = Depends(create_session)
 ) -> List[MovieSchema]:
     return MovieService(session).get_new_movies(year, rating)
 ```
@@ -197,14 +186,14 @@ async def get_new_movies(
 As a final step, we proceed by creating a new file called `services/movies.py`. 
 In this file, we will implement the specific logic associated with the `movies` 
 service. In our case, this involves fetching data from the relevant database objects and 
-transforming it into the desired response schema.
+transforming it into the desired response schemas.
 
-Each service is implemented as a subclass of the `AppService` class, which provides an
+Each service is implemented as a subclass of the `BaseService` class, which provides an
 instance of the database session. This session can be delegated further down to the data 
 processing layer.
 
 To ensure separation of concerns, the data access methods are encapsulated within a subclass 
-of the `AppCRUD` class. This class offers convenience helpers for performing 
+of the `BaseDataManager` class. This class offers convenience helpers for performing 
 CRUD (Create, Read, Update, Delete) operations on the database objects, 
 keeping them distinct from the main service logic.
 
@@ -215,21 +204,18 @@ from sqlalchemy import select
 
 from app.models.movies import MovieModel
 from app.schemas.movies import MovieSchema
-from app.services.base import (
-    AppCRUD,
-    AppService,
-)
+from app.services.base import BaseDataManager, BaseService
 
 
-class MovieService(AppService):
+class MovieService(BaseService):
     def get_movie(self, movie_id: int) -> MovieSchema:
-        return MovieCRUD(self.db).get_movie(movie_id)
+        return MovieDataManager(self.session).get_movie(movie_id)
 
     def get_movies(self, year: int, rating: float) -> List[MovieSchema]:
-        return MovieCRUD(self.db).get_movies(year, rating)
+        return MovieDataManager(self.session).get_movies(year, rating)
 
 
-class MovieCRUD(AppCRUD):
+class MovieDataManager(BaseDataManager):
     def get_movie(self, movie_id: int) -> MovieSchema:
         stmt = select(MovieModel).where(MovieModel.movie_id == movie_id)
         model = self.get_one(stmt)
@@ -312,11 +298,7 @@ from passlib.context import CryptContext
 
 from app.models.auth import UserModel
 from app.schemas.auth import CreateUserSchema
-from app.services.base import (
-    AppCRUD,
-    AppService,
-)
-
+from app.services.base import BaseDataManager, BaseService
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -331,15 +313,17 @@ class HashingMixin:
         return pwd_context.verify(plain_password, hashed_password)
 
 
-class AuthService(HashingMixin, AppService):
+class AuthService(HashingMixin, BaseService):
     def create_user(self, user: CreateUserSchema) -> None:
         user_model = UserModel(
-            name=user.name, email=user.email, hashed_password=self.bcrypt(user.password)
+            name=user.name, 
+            email=user.email, 
+            hashed_password=self.bcrypt(user.password),
         )
-        AuthCRUD(self.db).add_user(user_model)
+        AuthDataManager(self.session).add_user(user_model)
 
 
-class AuthCRUD(AppCRUD):
+class AuthDataManager(BaseDataManager):
     def add_user(self, user: UserModel) -> None:
         self.add_one(user)
 ```
@@ -351,7 +335,7 @@ from the command-line interface.
 ```python
 import click
 
-from app.backend.database import create_session
+from app.backend.session import create_session
 from app.schemas.auth import CreateUserSchema
 from app.services.auth import AuthService
 
@@ -398,23 +382,22 @@ in the `routers/auth.py` module.
 
 ```python
 from jose import jwt
-from fastapi import (
-    Depends,
-    status,
-)
+from fastapi import Depends, status
 from fastapi.security import OAuth2PasswordRequestForm
+from sqlalchemy import select
 
 from app.backend.config import config
 from app.exc import raise_with_log
-from app.schemas.auth import TokenSchema
-from app.services.base import AppService
+from app.models.auth import UserModel
+from app.schemas.auth import TokenSchema, UserSchema
+from app.services.base import BaseDataManager, BaseService
 
 
-class AuthService(AppService):
+class AuthService(BaseService):
     def authenticate(
         self, login: OAuth2PasswordRequestForm = Depends()
     ) -> TokenSchema | None:
-        user = AuthCRUD(self.db).get_user(login.username)
+        user = AuthDataManager(self.session).get_user(login.username)
 
         if user.hashed_password is None:
             raise_with_log(status.HTTP_401_UNAUTHORIZED, "Incorrect password")
@@ -434,6 +417,20 @@ class AuthService(AppService):
         }
 
         return jwt.encode(payload, config.token_key, algorithm="HS256")
+
+
+class AuthDataManager(BaseDataManager):
+    def get_user(self, email: str) -> UserSchema:
+        model = self.get_one(select(UserModel).where(UserModel.email == email))
+
+        if not isinstance(model, UserModel):
+            raise_with_log(status.HTTP_404_NOT_FOUND, "User not found")
+
+        return UserSchema(
+            name=model.name,
+            email=model.email,
+            hashed_password=model.hashed_password,
+        )
 ```
 
 ### Verification
@@ -448,19 +445,14 @@ The `get_current_user` function is responsible for token verification.
 
 ```python
 from datetime import datetime
-from jose import (
-    jwt,
-    JWTError,
-)
-from fastapi import (
-    Depends,
-    status,
-)
+
+from jose import jwt, JWTError
+from fastapi import Depends, status
 from fastapi.security import OAuth2PasswordBearer
+
 from app.backend.config import config
 from app.exc import raise_with_log
 from app.schemas.auth import UserSchema
-
 
 oauth2_schema = OAuth2PasswordBearer(tokenUrl="token", auto_error=False)
 
@@ -542,7 +534,7 @@ $ curl -X 'POST' 'http://127.0.0.1:8000/token' -d 'username=test_user@myapi.com&
 
 Authentication succeeded, and we obtained an access token.
 
-If we attempt to send a request with incorrect login data, the application will raise an error.
+If we now attempt to send a request with incorrect login data, the application will raise an error.
 
 ```bash
 $ curl -X 'POST' 'http://127.0.0.1:8000/token' -d 'username=test_user@myapi.com&password=qwerty'
