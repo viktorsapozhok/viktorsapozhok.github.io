@@ -550,6 +550,6 @@ $ curl -X 'GET' 'http://127.0.0.1:8000/movies/new?year=1990&rating=9' -H 'Author
 
 Alright, it works.
 
-Please check the source code in the [repository][2] for more detail.
+For more details, see source code in the [repository][2].
 
 [2]: https://github.com/viktorsapozhok/fastapi-services-oauth2 "viktorsapozhok/fastapi-services-oauth2"
