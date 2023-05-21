@@ -2,12 +2,12 @@
 layout: post
 title: "Structuring FastAPI application with multiple services using 3-tier design pattern."
 slug: fastapi-oauth2-postgres
-description: Learn how to effectively structure a FastAPI application with multiple services using 3-tier design pattern, integrate with a Postgres backend, implement OAuth2 password authentication.
-keywords: fastapi 3-tier oauth2 jwt postgres
+description: How to structure a FastAPI application using 3-tier design pattern, integrate with a Postgres backend via SQLAlchemy 2.0, implement OAuth2 password authentication.
+keywords: fastapi sqlalchemy postgres 3-tier oauth2 jwt
 ---
 
 This tutorial provides an approach on how to effectively structure a FastAPI application
-with multiple services using 3-tier design pattern, integrate it with Postgres backend, 
+with multiple services using 3-tier design pattern, integrate it with Postgres backend via SQLAlchemy 2.0, 
 and implement straightforward OAuth2 Password authentication flow using Bearer and JSON Web Tokens (JWT). 
 
 <br/>
